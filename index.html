@@ -43,50 +43,130 @@ body {
     100% { transform:translateY(105vh) rotate(360deg) translateX(-10px); opacity:0.25; }
 }
 
-/* ===== 肥嘟嘟左卫门边缘装饰 ===== */
+/* ===== 头像与肥嘟嘟左卫门 · 场景化联动 ===== */
+.portrait-row {
+    display:flex; gap:14px; align-items:center; cursor:pointer;
+    position:relative; z-index:4;
+    transition:transform .3s cubic-bezier(0.25,1,0.5,1);
+}
+.portrait-row:hover { transform:translateY(-2px); }
+.avatar-img {
+    width:88px; height:88px; border-radius:24px; object-fit:cover;
+    border:1px solid rgba(255,255,255,.8);
+    box-shadow:0 12px 28px rgba(120,60,90,.06); background:#fff;
+    transition:transform .3s cubic-bezier(0.25,1,0.5,1), box-shadow .3s ease;
+}
+.portrait-row:hover .avatar-img {
+    transform:scale(1.06) rotate(-2deg);
+    box-shadow:0 16px 36px rgba(120,60,90,.12);
+}
+.portrait-copy h2 { margin:0 0 4px; font-size:20px; font-weight:700; color:#3D2C35; }
+.portrait-copy p { margin:0; color:#7A6068; line-height:1.6; font-size:13px; }
+
+/* 对话泡泡 */
+.visual-bridge {
+    position:relative; display:flex; justify-content:flex-end;
+    margin:-4px 36px -10px 0; z-index:3; pointer-events:none;
+}
+.mascot-bubble {
+    background:rgba(255,255,255,.92); border:1px solid #FFCADE;
+    padding:6px 14px; border-radius:16px 16px 4px 16px;
+    font-size:11px; color:#846673; font-weight:500;
+    box-shadow:0 6px 20px rgba(120,60,90,.04);
+    animation:bubbleFloat 3.5s ease-in-out infinite;
+    backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px);
+}
+.mascot-bubble::after {
+    content:''; position:absolute; bottom:-6px; right:14px;
+    border-width:6px 6px 0; border-style:solid;
+    border-color:rgba(255,255,255,.92) transparent;
+}
+.mascot-bubble::before {
+    content:''; position:absolute; bottom:-7px; right:13px;
+    border-width:7px 7px 0; border-style:solid;
+    border-color:#FFCADE transparent; z-index:-1;
+}
+@keyframes bubbleFloat {
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-4px);}
+}
+
+/* 肥嘟嘟展示舞台 */
+.mascot-stage {
+    position:relative; margin-top:4px; min-height:270px; border-radius:28px;
+    background:linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.2));
+    border:1px solid rgba(255,255,255,.7); overflow:visible;
+    display:grid; place-items:center; padding-bottom:25px;
+}
+.mascot-stage .zueimon-hero {
+    width:min(180px,55%); height:auto;
+    filter:drop-shadow(0 12px 24px rgba(185,130,150,.2));
+    z-index:2; animation:normalBob 4.5s ease-in-out infinite;
+    transition:transform .3s ease;
+}
+@keyframes normalBob {
+    0%,100%{transform:translateY(0) scale(1);}
+    50%{transform:translateY(-6px) scale(1.02);}
+}
+/* 头像hover → 肥嘟嘟跳跃联动 */
+.portrait-row:hover ~ .mascot-stage .zueimon-hero {
+    animation:zueimonGreet .45s cubic-bezier(0.25,1,0.5,1) infinite alternate !important;
+}
+@keyframes zueimonGreet {
+    0%{transform:translateY(2px) scale(1) rotate(0deg);}
+    100%{transform:translateY(-16px) scale(1.05) rotate(4deg);}
+}
+.mascot-note {
+    position:absolute; left:14px; right:14px; bottom:12px;
+    font-size:11px; color:#947683;
+    background:rgba(255,255,255,.65); border:1px dashed rgba(232,146,168,.25);
+    border-radius:16px; padding:8px 12px; text-align:center; z-index:2;
+    backdrop-filter:blur(2px);
+}
+
+/* 边缘装饰 */
 .zueimon-peek {
-    position:absolute; right:-8px; bottom:20px; width:80px; z-index:5;
-    transform:rotate(-5deg); pointer-events:none;
+    position:absolute; right:-12px; bottom:24px; width:76px; z-index:5;
+    transform:rotate(-6deg); pointer-events:none;
+    filter:drop-shadow(0 6px 12px rgba(0,0,0,.05));
     animation:peekSway 4s ease-in-out infinite;
-    filter:drop-shadow(0 4px 8px rgba(120,60,90,.15));
 }
 @keyframes peekSway {
-    0%,100%{right:-8px;transform:rotate(-5deg);}
-    50%{right:2px;transform:rotate(-2deg);}
+    0%,100%{right:-12px;transform:rotate(-6deg);}
+    50%{right:-2px;transform:rotate(-2deg);}
 }
 .zueimon-jump {
-    position:fixed; right:max(12px, calc(50% - 660px)); top:32vh; width:100px; z-index:0;
-    pointer-events:none; animation:floatJump 5s ease-in-out infinite;
-    filter:drop-shadow(0 6px 14px rgba(120,60,90,.12));
+    position:fixed; right:max(16px, calc(50% - 660px)); top:30vh; width:105px; z-index:0;
+    pointer-events:none; filter:drop-shadow(0 10px 20px rgba(120,60,90,.08));
+    animation:floatJump 5.5s ease-in-out infinite;
 }
 @keyframes floatJump {
     0%,100%{transform:translateY(0) rotate(0deg);}
-    50%{transform:translateY(-14px) rotate(5deg);}
+    50%{transform:translateY(-16px) rotate(6deg);}
 }
 .zueimon-sketch {
-    position:fixed; left:max(12px, calc(50% - 660px)); bottom:20vh; width:95px; z-index:0;
-    opacity:.85; pointer-events:none; transform-origin:top center;
+    position:fixed; left:max(16px, calc(50% - 660px)); bottom:18vh; width:95px; z-index:0;
+    opacity:.8; pointer-events:none; transform-origin:top center;
+    filter:drop-shadow(0 6px 12px rgba(0,0,0,.04));
     animation:sketchSwing 6s ease-in-out infinite;
-    filter:drop-shadow(0 4px 10px rgba(120,60,90,.1));
 }
 @keyframes sketchSwing {
-    0%,100%{transform:rotate(-4deg);}
-    50%{transform:rotate(4deg);}
+    0%,100%{transform:rotate(-5deg);}
+    50%{transform:rotate(5deg);}
 }
-.zueimon-stamp {
-    position:absolute; top:12px; right:14px; width:42px; z-index:5;
-    border-radius:4px; box-shadow:0 3px 8px rgba(120,60,90,.12);
-    transform:rotate(-8deg); cursor:pointer;
-    transition:all .35s cubic-bezier(0.175,0.885,0.32,1.275);
-}
-.zueimon-stamp:hover { transform:rotate(0deg) scale(1.25); box-shadow:0 6px 16px rgba(120,60,90,.2); }
 
-@media (max-width:1080px) {
+@media (max-width:1120px) {
     .zueimon-jump,.zueimon-sketch{display:none!important;}
 }
 @media (max-width:480px) {
-    .zueimon-peek{width:58px;right:-10px;bottom:10px;}
-    .zueimon-stamp{width:32px;top:10px;right:8px;}
+    .portrait-row{margin-bottom:-12px;}
+    .avatar-img{width:76px;height:76px;border-radius:20px;}
+    .portrait-copy h2{font-size:17px;}
+    .portrait-copy p{font-size:12px;}
+    .visual-bridge{margin:-4px 20px -8px 0;}
+    .mascot-stage{min-height:220px;padding-bottom:20px;}
+    .mascot-stage .zueimon-hero{width:45%;}
+    .zueimon-peek{width:62px;right:-8px;bottom:16px;}
 }
 
 /* ===== 主容器 ===== */
@@ -109,7 +189,7 @@ body {
     min-height:60vh; margin-bottom:22px;
 }
 .hero-l,.hero-r {
-    position:relative; overflow:hidden;
+    position:relative;
     border:1px solid rgba(255,255,255,.6);
     background:linear-gradient(180deg, rgba(255,255,255,.68), rgba(255,255,255,.38));
     backdrop-filter:blur(16px);
@@ -138,35 +218,6 @@ body {
 .meta-item .k { color:#94687f; font-size:11px; letter-spacing:.06em; margin-bottom:4px; }
 .meta-item .v { font-size:14px; line-height:1.55; }
 
-.portrait-row { display:flex; gap:14px; align-items:center; }
-.avatar-img {
-    width:88px; height:88px; border-radius:24px; object-fit:cover;
-    border:1px solid rgba(255,255,255,.8); box-shadow:0 12px 28px rgba(120,60,90,.08);
-    background:#fff;
-}
-.portrait-copy h2 { margin:0 0 4px; font-size:20px; }
-.portrait-copy p { margin:0; color:var(--muted); line-height:1.6; font-size:13px; }
-
-/* Hero 右侧肥嘟嘟展示区 */
-.mascot-stage {
-    position:relative; margin-top:4px; min-height:260px; border-radius:28px;
-    background:linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.18));
-    border:1px solid rgba(255,255,255,.65); overflow:hidden;
-    display:grid; place-items:center;
-}
-.mascot-stage .zueimon-hero {
-    width:min(200px,60%); height:auto;
-    filter:drop-shadow(0 14px 22px rgba(120,60,90,.15));
-    animation:bob 4.5s ease-in-out infinite;
-    z-index:2;
-}
-@keyframes bob { 50%{transform:translateY(-4px);} }
-.mascot-note {
-    position:absolute; left:14px; right:14px; bottom:12px;
-    font-size:12px; line-height:1.6; color:#846673;
-    background:rgba(255,255,255,.55); border:1px dashed rgba(120,80,100,.15);
-    border-radius:16px; padding:10px 12px; text-align:center;
-}
 
 /* ===== 区块标题 ===== */
 .section-head {
@@ -272,8 +323,8 @@ footer {
 <body>
 
 <!-- 肥嘟嘟左卫门 两侧固定装饰 -->
-<img src="images/ScreenShot_2026-06-12_144942_065.png" alt="肥嘟嘟左卫门" class="zueimon-jump">
-<img src="images/ScreenShot_2026-06-12_144822_088.png" alt="肥嘟嘟左卫门" class="zueimon-sketch">
+<img src="images/zueimon-jump.png" alt="肥嘟嘟左卫门" class="zueimon-jump">
+<img src="images/zueimon-sketch.png" alt="肥嘟嘟左卫门" class="zueimon-sketch">
 
 <!-- 飘落花瓣 -->
 <div class="petals-container" id="petals"></div>
@@ -317,11 +368,17 @@ footer {
                     <p>把个人优势做成更适合展示的视觉语言。</p>
                 </div>
             </div>
+
+            <div class="visual-bridge">
+                <div class="mascot-bubble">这就是我的精神图腾！✨</div>
+            </div>
+
             <div class="mascot-stage">
-                <img src="images/ScreenShot_2026-06-12_145006_449.png" alt="肥嘟嘟左卫门" class="zueimon-hero">
+                <img src="images/zueimon-hero.png" alt="肥嘟嘟左卫门 武士" class="zueimon-hero">
                 <div class="mascot-note">肥嘟嘟左卫门 · 春日部防卫队</div>
             </div>
-            <img src="images/ScreenShot_2026-06-12_144852_151.png" alt="肥嘟嘟左卫门" class="zueimon-peek">
+
+            <img src="images/zueimon-peek.png" alt="肥嘟嘟左卫门 探头" class="zueimon-peek">
         </div>
     </section>
 
