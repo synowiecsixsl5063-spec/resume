@@ -7,427 +7,416 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
 <style>
 :root {
-    --pink-glass: rgba(255, 200, 215, 0.35);
-    --pink-strong: rgba(255, 160, 180, 0.55);
-    --pink-light: rgba(255, 220, 235, 0.45);
-    --white-glass: rgba(255,255,255,0.55);
-    --card-glass: rgba(255,255,255,0.65);
-    --text-main: #3D2C35;
-    --text-muted: #7A6068;
-    --accent: #E892A8;
-    --shadow: 0 8px 32px rgba(180,130,150,0.12);
+    --bg-1: #fff7fb; --bg-2: #f9e6f0; --bg-3: #ffeef4;
+    --ink: #3c2b34; --muted: #7a6570;
+    --line: rgba(120,80,100,.14); --line-strong: rgba(120,80,100,.22);
+    --pink: #f3a9c6; --pink-2: #ffcade; --rose: #e788b2;
+    --peach: #ffdfc7; --gold: #f7c66a; --leaf: #cce8d3;
+    --shadow: 0 18px 50px rgba(120,60,90,.08);
+    --shadow-sm: 0 10px 30px rgba(120,60,90,.05);
+    --radius: 28px; --radius-sm: 20px;
+    --max: 1280px;
 }
-
 * { box-sizing:border-box; margin:0; padding:0; }
-
 body {
-    background: linear-gradient(170deg, #FFF5F8 0%, #FFE8F0 20%, #FFF0F5 45%, #FDE8F0 70%, #FFF5FA 100%);
-    background-attachment: fixed;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Roboto,"Helvetica Neue",Arial,sans-serif;
-    color: var(--text-main);
-    line-height: 1.6;
-    overflow-x: hidden;
-    min-height: 100vh;
-}
-
-/* ===== 肥嘟嘟左卫门装饰动效 ===== */
-.zueimon-peek {
-    position: absolute; right: -20px; bottom: 15px; width: 85px;
-    z-index: 10; transform: rotate(-5deg); pointer-events: none;
-    animation: peekSway 4s ease-in-out infinite;
-}
-@keyframes peekSway {
-    0%, 100% { right: -20px; transform: rotate(-5deg); }
-    50% { right: -10px; transform: rotate(-2deg); }
-}
-
-.zueimon-stamp {
-    position: absolute; top: 12px; right: 15px; width: 45px;
-    border-radius: 6px; box-shadow: 0 4px 10px rgba(180,130,150,0.15);
-    transform: rotate(-8deg); transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 3; cursor: pointer;
-}
-.zueimon-stamp:hover { transform: rotate(0deg) scale(1.22); box-shadow: 0 6px 16px rgba(180,130,150,0.25); }
-
-.zueimon-jump {
-    position: fixed; right: calc(50% - 390px); top: 35vh; width: 110px;
-    z-index: 0; pointer-events: none; animation: floatJump 5s ease-in-out infinite;
-}
-@keyframes floatJump {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-15px) rotate(6deg); }
-}
-
-.zueimon-sketch {
-    position: fixed; left: calc(50% - 390px); bottom: 22vh; width: 105px;
-    z-index: 0; opacity: 0.85; pointer-events: none; transform-origin: top center;
-    animation: sketchSwing 6s ease-in-out infinite;
-}
-@keyframes sketchSwing {
-    0%, 100% { transform: rotate(-4deg); }
-    50% { transform: rotate(4deg); }
+    margin:0; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    color:var(--ink);
+    background:
+        radial-gradient(circle at 12% 10%, rgba(255,214,232,.7) 0 10%, transparent 10.2%),
+        radial-gradient(circle at 88% 18%, rgba(255,228,190,.55) 0 9%, transparent 9.2%),
+        radial-gradient(circle at 72% 82%, rgba(206,237,220,.4) 0 8%, transparent 8.2%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 44%, #fff 100%);
+    overflow-x:hidden; min-height:100vh;
 }
 
 /* ===== 飘落花瓣 ===== */
-.petals-container {
-    position: fixed; top:0; left:0; width:100%; height:100%;
-    pointer-events: none; z-index: 0; overflow: hidden;
-}
+.petals-container { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
 .petal {
-    position: absolute; top: -60px;
-    animation: petalFall linear infinite;
-    opacity: 0.7;
-    font-size: 22px;
-    filter: blur(0.5px);
+    position:absolute; top:-60px; animation:petalFall linear infinite;
+    font-size:22px; filter:blur(0.5px); opacity:0.55;
 }
 @keyframes petalFall {
-    0%   { transform: translateY(-60px) rotate(0deg) translateX(0px); opacity: 0.8; }
-    25%  { transform: translateY(25vh) rotate(90deg) translateX(30px); opacity: 0.6; }
-    50%  { transform: translateY(50vh) rotate(180deg) translateX(-20px); opacity: 0.7; }
-    75%  { transform: translateY(75vh) rotate(270deg) translateX(25px); opacity: 0.5; }
-    100% { transform: translateY(105vh) rotate(360deg) translateX(-10px); opacity: 0.3; }
+    0%   { transform:translateY(-60px) rotate(0deg) translateX(0px); opacity:0.7; }
+    25%  { transform:translateY(25vh) rotate(90deg) translateX(30px); opacity:0.55; }
+    50%  { transform:translateY(50vh) rotate(180deg) translateX(-20px); opacity:0.65; }
+    75%  { transform:translateY(75vh) rotate(270deg) translateX(25px); opacity:0.45; }
+    100% { transform:translateY(105vh) rotate(360deg) translateX(-10px); opacity:0.25; }
+}
+
+/* ===== 肥嘟嘟左卫门边缘装饰 ===== */
+.zueimon-peek {
+    position:absolute; right:-8px; bottom:20px; width:80px; z-index:5;
+    transform:rotate(-5deg); pointer-events:none;
+    animation:peekSway 4s ease-in-out infinite;
+    filter:drop-shadow(0 4px 8px rgba(120,60,90,.15));
+}
+@keyframes peekSway {
+    0%,100%{right:-8px;transform:rotate(-5deg);}
+    50%{right:2px;transform:rotate(-2deg);}
+}
+.zueimon-jump {
+    position:fixed; right:max(12px, calc(50% - 660px)); top:32vh; width:100px; z-index:0;
+    pointer-events:none; animation:floatJump 5s ease-in-out infinite;
+    filter:drop-shadow(0 6px 14px rgba(120,60,90,.12));
+}
+@keyframes floatJump {
+    0%,100%{transform:translateY(0) rotate(0deg);}
+    50%{transform:translateY(-14px) rotate(5deg);}
+}
+.zueimon-sketch {
+    position:fixed; left:max(12px, calc(50% - 660px)); bottom:20vh; width:95px; z-index:0;
+    opacity:.85; pointer-events:none; transform-origin:top center;
+    animation:sketchSwing 6s ease-in-out infinite;
+    filter:drop-shadow(0 4px 10px rgba(120,60,90,.1));
+}
+@keyframes sketchSwing {
+    0%,100%{transform:rotate(-4deg);}
+    50%{transform:rotate(4deg);}
+}
+.zueimon-stamp {
+    position:absolute; top:12px; right:14px; width:42px; z-index:5;
+    border-radius:4px; box-shadow:0 3px 8px rgba(120,60,90,.12);
+    transform:rotate(-8deg); cursor:pointer;
+    transition:all .35s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+.zueimon-stamp:hover { transform:rotate(0deg) scale(1.25); box-shadow:0 6px 16px rgba(120,60,90,.2); }
+
+@media (max-width:1080px) {
+    .zueimon-jump,.zueimon-sketch{display:none!important;}
+}
+@media (max-width:480px) {
+    .zueimon-peek{width:58px;right:-10px;bottom:10px;}
+    .zueimon-stamp{width:32px;top:10px;right:8px;}
 }
 
 /* ===== 主容器 ===== */
-.main-container {
-    position: relative; z-index: 1;
-    max-width: 520px; margin: 0 auto; padding: 0 20px;
-}
+.wrap { position:relative; z-index:1; max-width:var(--max); margin:0 auto; padding:28px 22px 40px; }
 
-/* ===== 头部 ===== */
+/* ===== 顶部栏 ===== */
+.topline {
+    display:flex; align-items:center; justify-content:space-between; gap:14px;
+    color:var(--muted); font-size:13px; letter-spacing:.06em;
+    padding:4px 4px 22px;
+}
+.topline .mark { display:flex; align-items:center; gap:10px; }
+.dot { width:10px; height:10px; border-radius:50%; background:linear-gradient(135deg,var(--rose),var(--gold)); box-shadow:0 0 0 6px rgba(243,169,198,.12); }
+.topline .mini { display:flex; gap:8px; flex-wrap:wrap; }
+.chip { padding:5px 10px; border:1px solid rgba(255,255,255,.7); background:rgba(255,255,255,.45); backdrop-filter:blur(8px); border-radius:999px; font-size:11px; }
+
+/* ===== Hero 双栏 ===== */
 .hero {
-    text-align: center; padding: 50px 0 24px;
-    position: relative;
+    display:grid; grid-template-columns:1.25fr .85fr; gap:22px; align-items:stretch;
+    min-height:60vh; margin-bottom:22px;
 }
-.hero-flowers {
-    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-    font-size: 36px; letter-spacing: 6px; opacity: 0.7;
-    animation: heroFloat 4s ease-in-out infinite;
+.hero-l,.hero-r {
+    position:relative; overflow:hidden;
+    border:1px solid rgba(255,255,255,.6);
+    background:linear-gradient(180deg, rgba(255,255,255,.68), rgba(255,255,255,.38));
+    backdrop-filter:blur(16px);
+    box-shadow:var(--shadow);
+    border-radius:clamp(22px,3vw,36px);
 }
-@keyframes heroFloat {
-    0%,100% { transform: translateX(-50%) translateY(0); }
-    50%     { transform: translateX(-50%) translateY(-8px); }
-}
+.hero-l { padding:clamp(20px,3.5vw,38px); display:grid; gap:20px; align-content:start; }
+.hero-r { padding:20px; display:grid; gap:14px; align-content:start; }
 
-.avatar-wrap { position: relative; width: 120px; height: 120px; margin: 0 auto 18px; }
-.avatar-glow {
-    position: absolute; top:-12px; left:-12px; right:-12px; bottom:-12px;
-    border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%;
-    background: linear-gradient(135deg, rgba(255,180,200,0.5), rgba(255,210,230,0.25), rgba(200,160,220,0.35));
-    animation: glowMorph 6s ease-in-out infinite;
+.eyebrow {
+    display:inline-flex; align-items:center; gap:8px; width:fit-content;
+    padding:7px 12px; background:rgba(255,255,255,.55);
+    border:1px solid var(--line); border-radius:999px; color:#8b5f76; font-size:13px;
 }
-@keyframes glowMorph {
-    0%,100% { border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%; }
-    50%     { border-radius: 45% 55% 50% 55% / 55% 45% 55% 45%; }
-}
-.avatar-img {
-    position: relative; width: 120px; height: 120px; object-fit: cover;
-    border-radius: 50%; border: 3px solid rgba(255,255,255,0.8);
-    box-shadow: 0 4px 24px rgba(200,150,170,0.25);
-    z-index: 1; background: #FDF0E8;
-}
-.avatar-fallback {
-    position: relative; width: 120px; height: 120px; border-radius: 50%;
-    border: 3px solid rgba(255,255,255,0.8); z-index: 1;
-    background: linear-gradient(135deg, #FFE0EA, #FFD0DD);
-    display: none; align-items: center; justify-content: center; font-size: 56px;
-    box-shadow: 0 4px 24px rgba(200,150,170,0.25);
-    margin: 0 auto;
-}
-
-.hero h1 { font-size: 26px; font-weight: 700; letter-spacing: 1px; margin-bottom: 4px; }
-.hero .sub { font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 16px; }
-
-/* ===== 玻璃卡片 ===== */
-.glass-card {
-    background: var(--card-glass);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 24px; padding: 26px 22px; margin-bottom: 18px;
-    border: 1px solid rgba(255,220,235,0.5);
-    box-shadow: var(--shadow);
-    position: relative; overflow: hidden;
-}
-.glass-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
-}
-.glass-card .card-flowers {
-    position: absolute; top:-10px; right:-6px; font-size: 28px; opacity: 0.35;
-    pointer-events: none; transform: rotate(15deg);
-}
-.section-title {
-    font-size: 17px; font-weight: 600; margin-bottom: 18px;
-    display: flex; align-items: center; gap: 8px;
-}
-.section-title i { color: var(--accent); font-size: 15px; }
-
-/* ===== 标签 ===== */
-.tag-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.hero h1 { font-size:clamp(38px,5.5vw,78px); line-height:.95; letter-spacing:-.03em; margin:0; }
+.hero .subtitle { margin:0; color:var(--muted); font-size:clamp(14px,1.2vw,17px); line-height:1.75; }
+.tags-row { display:flex; flex-wrap:wrap; gap:8px; }
 .tag {
-    background: rgba(255,255,255,0.7); backdrop-filter: blur(8px);
-    padding: 7px 16px; border-radius: 100px; font-size: 12px;
-    color: var(--text-muted); border: 1px solid rgba(255,190,210,0.4);
-    transition: all 0.3s;
+    padding:9px 13px; border-radius:999px;
+    background:linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.4));
+    border:1px solid rgba(255,255,255,.75); box-shadow:0 6px 14px rgba(120,60,90,.04);
+    color:#7c5c6d; font-size:13px;
 }
-.tag:hover {
-    background: var(--pink-glass); transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(220,150,170,0.2);
+.meta-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.meta-item { border-top:1px solid var(--line); padding-top:12px; }
+.meta-item .k { color:#94687f; font-size:11px; letter-spacing:.06em; margin-bottom:4px; }
+.meta-item .v { font-size:14px; line-height:1.55; }
+
+.portrait-row { display:flex; gap:14px; align-items:center; }
+.avatar-img {
+    width:88px; height:88px; border-radius:24px; object-fit:cover;
+    border:1px solid rgba(255,255,255,.8); box-shadow:0 12px 28px rgba(120,60,90,.08);
+    background:#fff;
+}
+.portrait-copy h2 { margin:0 0 4px; font-size:20px; }
+.portrait-copy p { margin:0; color:var(--muted); line-height:1.6; font-size:13px; }
+
+/* Hero 右侧肥嘟嘟展示区 */
+.mascot-stage {
+    position:relative; margin-top:4px; min-height:260px; border-radius:28px;
+    background:linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.18));
+    border:1px solid rgba(255,255,255,.65); overflow:hidden;
+    display:grid; place-items:center;
+}
+.mascot-stage .zueimon-hero {
+    width:min(200px,60%); height:auto;
+    filter:drop-shadow(0 14px 22px rgba(120,60,90,.15));
+    animation:bob 4.5s ease-in-out infinite;
+    z-index:2;
+}
+@keyframes bob { 50%{transform:translateY(-4px);} }
+.mascot-note {
+    position:absolute; left:14px; right:14px; bottom:12px;
+    font-size:12px; line-height:1.6; color:#846673;
+    background:rgba(255,255,255,.55); border:1px dashed rgba(120,80,100,.15);
+    border-radius:16px; padding:10px 12px; text-align:center;
 }
 
-/* ===== 照片墙 ===== */
-.photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.photo-card {
-    border-radius: 18px; overflow: hidden; aspect-ratio: 1/1;
-    position: relative; background: rgba(255,220,235,0.3);
-    box-shadow: 0 4px 16px rgba(180,140,160,0.12);
-    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s;
-    cursor: pointer;
+/* ===== 区块标题 ===== */
+.section-head {
+    display:flex; align-items:end; justify-content:space-between; gap:14px;
+    margin:10px 4px 14px;
 }
-.photo-card:hover {
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 12px 32px rgba(200,150,175,0.25);
-}
-.photo-card img { width: 100%; height: 100%; object-fit: cover; }
-.photo-label {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    padding: 10px 12px;
-    background: linear-gradient(transparent, rgba(100,50,70,0.45));
-    color: #fff; font-size: 11px; font-weight: 500;
-}
+.section-head h3 { font-size:clamp(20px,2.8vw,32px); line-height:1.15; letter-spacing:-.02em; }
+.section-head p { color:var(--muted); line-height:1.7; max-width:50ch; font-size:14px; }
+.rule { height:1px; background:linear-gradient(90deg, var(--line-strong), transparent 75%); margin:0 4px 14px; }
 
-/* ===== 肥嘟嘟左卫门卡片 ===== */
-.zueimon-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.zueimon-card {
-    background: rgba(255,245,248,0.7); backdrop-filter: blur(12px);
-    border-radius: 20px; padding: 18px 14px;
-    text-align: center; border: 1px solid rgba(255,200,220,0.5);
-    box-shadow: 0 4px 16px rgba(200,160,180,0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+/* ===== 经历三列 ===== */
+.exp-grid {
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; align-items:stretch;
 }
-.zueimon-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(200,160,180,0.2);
+.exp {
+    position:relative; padding:20px 18px;
+    border-radius:var(--radius); overflow:hidden;
+    background:linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.3));
+    border:1px solid rgba(255,255,255,.68);
+    box-shadow:var(--shadow-sm); min-height:200px;
 }
-.zueimon-card .cat-img {
-    width: 80px; height: 80px; border-radius: 50%; object-fit: cover;
-    margin: 0 auto 10px; background: linear-gradient(135deg, #FFF0E8, #FFE0D5);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 48px; box-shadow: 0 4px 12px rgba(200,160,170,0.2);
-    border: 2px solid rgba(255,255,255,0.6);
+.exp::before {
+    content:""; position:absolute; inset:auto -24px -24px auto; width:110px; height:110px;
+    border-radius:50%; background:radial-gradient(circle, rgba(243,169,198,.18), rgba(243,169,198,0) 65%);
 }
-.zueimon-card h4 { font-size: 13px; margin-bottom: 4px; color: var(--text-main); }
-.zueimon-card p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+.exp .no { font-size:11px; letter-spacing:.1em; color:#9b7386; margin-bottom:10px; }
+.exp h4 { margin:0 0 8px; font-size:20px; }
+.exp p { margin:0; color:var(--muted); line-height:1.75; font-size:13px; }
+.exp ul { margin:12px 0 0; padding:0; list-style:none; display:grid; gap:6px; }
+.exp li { position:relative; padding-left:16px; color:#664e5b; line-height:1.6; font-size:13px; }
+.exp li::before { content:""; position:absolute; left:0; top:.65em; width:7px; height:7px; border-radius:50%; background:linear-gradient(135deg, var(--pink), var(--gold)); }
 
-/* ===== 时间轴 ===== */
-.timeline { display: flex; flex-direction: column; gap: 18px; }
-.timeline-item {
-    position: relative; padding-left: 22px;
-    border-left: 2px dashed rgba(230,170,190,0.6);
+/* ===== 手作展示 ===== */
+.gallery-grid {
+    display:grid; grid-template-columns:1.05fr .85fr 1fr; gap:14px; align-items:stretch;
 }
-.timeline-item::before {
-    content: '🌸'; position: absolute; left: -12px; top: -2px;
-    font-size: 14px;
+.gallery-panel {
+    border-radius:var(--radius); overflow:hidden;
+    background:linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.3));
+    border:1px solid rgba(255,255,255,.7); box-shadow:var(--shadow-sm);
 }
-.timeline-item h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-.timeline-item .meta { font-size: 11px; color: var(--accent); font-weight: 500; }
-.timeline-item p { font-size: 12.5px; color: var(--text-muted); margin-top: 4px; line-height: 1.65; }
+.gallery-panel img { width:100%; height:260px; object-fit:cover; display:block; }
+.gallery-panel .cap { padding:14px 16px; color:#694f5d; line-height:1.65; font-size:13px; }
+.gallery-panel .cap strong { display:block; margin-bottom:4px; color:var(--ink); }
+.slot-panel {
+    border-radius:var(--radius); padding:18px; min-height:260px;
+    display:grid; gap:10px; align-content:start;
+    background:linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.25));
+    border:1px solid rgba(255,255,255,.7); box-shadow:var(--shadow-sm);
+}
+.slot {
+    min-height:72px; border-radius:18px; border:1px dashed rgba(140,100,120,.2);
+    background:rgba(255,255,255,.3); display:flex; align-items:center; justify-content:center;
+    color:#8a6d7d; text-align:center; padding:10px; line-height:1.55; font-size:12px;
+}
+.slot.big { min-height:130px; }
 
-/* ===== 联系 ===== */
-.contact-row { display: flex; flex-direction: column; gap: 10px; }
-.contact-link {
-    display: flex; align-items: center; gap: 14px; padding: 14px 16px;
-    background: rgba(255,255,255,0.55); backdrop-filter: blur(10px);
-    border-radius: 16px; text-decoration: none; color: inherit;
-    border: 1px solid rgba(255,200,215,0.4);
-    transition: all 0.3s;
+/* ===== 联系三列 ===== */
+.contact-grid {
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:14px;
 }
-.contact-link:hover {
-    background: var(--pink-glass); transform: translateX(4px);
+.contact-box {
+    padding:18px; border-radius:var(--radius);
+    background:linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.3));
+    border:1px solid rgba(255,255,255,.7); box-shadow:var(--shadow-sm);
 }
-.contact-link .c-icon {
-    width: 38px; height: 38px; border-radius: 12px;
-    background: rgba(255,210,225,0.5);
-    display: flex; align-items: center; justify-content: center;
-    color: #D48095; font-size: 15px;
-}
-.contact-link .c-text small { font-size: 10px; color: var(--text-muted); display: block; }
-.contact-link .c-text strong { font-size: 13px; font-weight: 500; }
+.contact-box a { text-decoration:none; color:inherit; }
+.contact-box .k { color:#9b7386; font-size:12px; letter-spacing:.06em; margin-bottom:8px; }
+.contact-box .v { font-size:16px; line-height:1.6; }
+.contact-box .v a:hover { color:var(--rose); }
 
-/* ===== 底部 ===== */
 footer {
-    text-align: center; padding: 28px 0 44px;
-    font-size: 11px; color: var(--text-muted); letter-spacing: 0.5px;
+    text-align:center; padding:28px 0 40px; font-size:12px;
+    color:var(--muted); letter-spacing:.5px; border-top:1px solid var(--line); margin-top:18px;
 }
-footer .flower-row { font-size: 18px; letter-spacing: 3px; margin-bottom: 8px; opacity: 0.6; }
 
 /* ===== 滚动动效 ===== */
-.reveal {
-    opacity: 0; transform: translateY(28px);
-    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
-}
-.reveal.on { opacity: 1; transform: translateY(0); }
+.reveal { opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(0.16,1,0.3,1), transform .7s cubic-bezier(0.16,1,0.3,1); }
+.reveal.on { opacity:1; transform:translateY(0); }
 
-/* ===== 手机 ===== */
-@media (max-width: 1150px) {
-    .zueimon-jump, .zueimon-sketch { display: none !important; }
+/* ===== 响应式 ===== */
+@media (max-width:960px) {
+    .hero{grid-template-columns:1fr; min-height:auto;}
+    .exp-grid{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:1fr 1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .mascot-stage{min-height:220px;}
 }
-@media (max-width: 380px) {
-    .main-container { padding: 0 14px; }
-    .glass-card { padding: 22px 16px; }
-    .hero h1 { font-size: 23px; }
-    .photo-grid, .zueimon-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-    .zueimon-peek { right: -15px; width: 65px; bottom: 12px; }
-    .zueimon-stamp { width: 38px; top: 14px; right: 10px; }
+@media (max-width:600px) {
+    .wrap{padding:14px 12px 30px;}
+    .hero-l,.hero-r{border-radius:20px;}
+    .hero-l{padding:18px;}
+    .hero-r{padding:14px;}
+    .hero h1{font-size:36px;}
+    .meta-grid{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:1fr;}
+    .gallery-panel img{height:220px;}
+    .topline{flex-direction:column; align-items:flex-start; gap:6px;}
+    .section-head{flex-direction:column; align-items:flex-start;}
 }
 </style>
 </head>
 <body>
 
-<img src="images/ScreenShot_2026-06-12_144942_065.png" alt="肥嘟嘟左卫门 飞跃" class="zueimon-jump">
-<img src="images/ScreenShot_2026-06-12_144822_088.png" alt="肥嘟嘟左卫门 线稿" class="zueimon-sketch">
+<!-- 肥嘟嘟左卫门 两侧固定装饰 -->
+<img src="images/ScreenShot_2026-06-12_144942_065.png" alt="肥嘟嘟左卫门" class="zueimon-jump">
+<img src="images/ScreenShot_2026-06-12_144822_088.png" alt="肥嘟嘟左卫门" class="zueimon-sketch">
 
+<!-- 飘落花瓣 -->
 <div class="petals-container" id="petals"></div>
 
-<div class="main-container">
-
-    <header class="hero reveal">
-        <div class="hero-flowers">🌸 ✿ 🌷 ✦ 🌸</div>
-        <div class="avatar-wrap">
-            <div class="avatar-glow"></div>
-            <img src="images/avatar.png" alt="李昊冉" class="avatar-img"
-                 onerror="this.style.display='none';document.getElementById('avatarFallback').style.display='flex';">
-            <div id="avatarFallback" class="avatar-fallback">🐙</div>
+<div class="wrap">
+    <div class="topline">
+        <div class="mark"><span class="dot"></span><span>Portfolio · Handmade · Soft Pink</span></div>
+        <div class="mini">
+            <span class="chip">GitHub Pages</span>
+            <span class="chip">Responsive</span>
         </div>
-        <h1>李昊冉</h1>
-        <p class="sub">生态学在读 · 手工DIY重度爱好者</p>
-        <div class="tag-row">
-            <span class="tag">🌿 海南大学在读</span>
-            <span class="tag">🎨 手工DIY爱好者</span>
-            <span class="tag">💪 耐心满分</span>
-            <span class="tag">⚡ 执行力强</span>
-            <span class="tag">😊 活力开朗</span>
-        </div>
-        <img src="images/ScreenShot_2026-06-12_144852_151.png" alt="肥嘟嘟左卫门 探头" class="zueimon-peek">
-    </header>
+    </div>
 
-    <section class="glass-card reveal">
-        <div class="card-flowers">✿ 🌸</div>
-        <h2 class="section-title"><i class="fa-solid fa-shapes"></i> 手作灵感</h2>
-        <div class="photo-grid">
-            <div class="photo-card">
-                <img src="images/微信图片_20260612140034_276_25.jpg" alt="手工作品">
-                <div class="photo-label">🪴 作品 01</div>
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+        <div class="hero-l">
+            <span class="eyebrow">海南大学在读 · 章鱼陶陶艺术馆应聘中</span>
+            <h1>李昊冉</h1>
+            <p class="subtitle">我把认真、耐心和执行力，做成了可见的手工细节；也把开朗、亲和与配合度，放进了每一次与人协作的过程里。</p>
+            <div class="tags-row">
+                <span class="tag">🌿 海南大学在读</span>
+                <span class="tag">🎨 手工DIY爱好者</span>
+                <span class="tag">💪 耐心满分</span>
+                <span class="tag">⚡ 执行力强</span>
+                <span class="tag">😊 活力开朗</span>
             </div>
-            <div class="photo-card">
-                <img src="images/微信图片_20260612140137_277_25.jpg" alt="手工作品">
-                <div class="photo-label">✨ 作品 02</div>
+            <div class="meta-grid">
+                <div class="meta-item"><span class="k">方向</span><span class="v">手作、门店服务、细致执行</span></div>
+                <div class="meta-item"><span class="k">关键词</span><span class="v">精密操作 / 物资清点 / 接待引导</span></div>
+                <div class="meta-item"><span class="k">状态</span><span class="v">可兼职、可配合排班、愿意学习</span></div>
+                <div class="meta-item"><span class="k">坐标</span><span class="v">海南 · 海口</span></div>
             </div>
         </div>
-    </section>
-
-    <section class="glass-card reveal">
-        <img src="images/ScreenShot_2026-06-12_145006_449.png" alt="肥嘟嘟左卫门 邮票" class="zueimon-stamp">
-        <div class="card-flowers">🐱 🌸</div>
-        <h2 class="section-title"><i class="fa-solid fa-cat"></i> 肥嘟嘟左卫门 · 我的精神图腾</h2>
-        <div class="zueimon-grid">
-            <div class="zueimon-card">
-                <div class="cat-img">🐱</div>
-                <h4>肥嘟嘟·吃货形态</h4>
-                <p>和左卫门一样，看到好吃的就走不动路。做手工的时候旁边必须放零食。</p>
+        <div class="hero-r">
+            <div class="portrait-row">
+                <img class="avatar-img" src="images/avatar.png" alt="李昊冉"
+                     onerror="this.style.display='none';document.getElementById('afb').style.display='flex';">
+                <div id="afb" style="display:none; width:88px;height:88px;border-radius:24px;background:linear-gradient(135deg,#FFE0EA,#FFD0DD);align-items:center;justify-content:center;font-size:40px;">🐙</div>
+                <div class="portrait-copy">
+                    <h2>温柔但不虚弱<br>细致但不拘谨</h2>
+                    <p>把个人优势做成更适合展示的视觉语言。</p>
+                </div>
             </div>
-            <div class="zueimon-card">
-                <div class="cat-img">😼</div>
-                <h4>肥嘟嘟·认真形态</h4>
-                <p>平时懒洋洋，但一旦开始做陶艺/拼豆就停不下来，和左卫门护食时一个样。</p>
+            <div class="mascot-stage">
+                <img src="images/ScreenShot_2026-06-12_145006_449.png" alt="肥嘟嘟左卫门" class="zueimon-hero">
+                <div class="mascot-note">肥嘟嘟左卫门 · 春日部防卫队</div>
             </div>
-            <div class="zueimon-card">
-                <div class="cat-img">😸</div>
-                <h4>肥嘟嘟·社交形态</h4>
-                <p>左卫门在春日部人缘超好。我也一样——跟谁都能聊起来，客人来了就是朋友。</p>
-            </div>
-            <div class="zueimon-card">
-                <div class="cat-img">🐾</div>
-                <h4>肥嘟嘟·打工形态</h4>
-                <p>虽然看起来呆呆的，但交代的事情一定做好。左卫门精神：踏实、靠谱、偶尔卖萌。</p>
-            </div>
+            <img src="images/ScreenShot_2026-06-12_144852_151.png" alt="肥嘟嘟左卫门" class="zueimon-peek">
         </div>
     </section>
 
-    <section class="glass-card reveal">
-        <div class="card-flowers">📋 🌷</div>
-        <h2 class="section-title"><i class="fa-solid fa-compass"></i> 经历沉淀</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <h4>实验室助理</h4>
-                <span class="meta">校园日常</span>
-                <p>培养了精密手工操作习惯——高精度天平称量、试剂配比，手法稳、误差小。习惯按标准流程作业，保持长时间专注，注重环境秩序感。</p>
-            </div>
-            <div class="timeline-item">
-                <h4>校园实地调研</h4>
-                <span class="meta">实践项目</span>
-                <p>负责团队出行物资清点核对与打包，野外多变环境下零失误。归来后承担资料的科学分类与编号归档，整理有条理。</p>
-            </div>
-            <div class="timeline-item">
-                <h4>小动物保护协会 · 志愿服务</h4>
-                <span class="meta">社会服务</span>
-                <p>活动现场接待来访市民，引导答疑不怯场。配合完成场地布置与撤场，服从调度，团队配合度高。</p>
-            </div>
-        </div>
-    </section>
+    <!-- ===== 经历 ===== -->
+    <div class="section-head"><h3>经历不是堆叠，而是自然展开</h3></div>
+    <div class="rule"></div>
+    <div class="exp-grid">
+        <article class="exp reveal">
+            <div class="no">01 / Laboratory</div>
+            <h4>实验室助理</h4>
+            <p>在精密操作里练出的，不只是手稳，还有对流程、节奏和细节误差的敏感度。</p>
+            <ul>
+                <li>精密手工操作，步骤清晰</li>
+                <li>按流程作业，减少差错</li>
+                <li>长时间专注，保持稳定输出</li>
+            </ul>
+        </article>
+        <article class="exp reveal">
+            <div class="no">02 / Field Study</div>
+            <h4>校园实地调研</h4>
+            <p>面对现场任务时，擅长把琐碎事务整理成有序流程，保证团队推进不断档。</p>
+            <ul>
+                <li>物资清点与分类管理</li>
+                <li>资料归档与记录整理</li>
+                <li>现场协作，执行力强</li>
+            </ul>
+        </article>
+        <article class="exp reveal">
+            <div class="no">03 / Volunteer</div>
+            <h4>志愿服务</h4>
+            <p>在接待和引导中练习表达与配合，也让亲和力变成可以落地的服务能力。</p>
+            <ul>
+                <li>接待引导，沟通自然</li>
+                <li>团队配合，响应及时</li>
+                <li>对外展示时更有耐心</li>
+            </ul>
+        </article>
+    </div>
 
-    <section class="glass-card reveal">
-        <div class="card-flowers">💌 🌸</div>
-        <h2 class="section-title"><i class="fa-solid fa-paper-plane"></i> 联系我</h2>
-        <div class="contact-row">
-            <a href="tel:18689631383" class="contact-link">
-                <div class="c-icon"><i class="fa-solid fa-phone"></i></div>
-                <div class="c-text"><small>电话</small><strong>186 8963 1383</strong></div>
-            </a>
-            <a href="mailto:18689631383@163.com" class="contact-link">
-                <div class="c-icon"><i class="fa-solid fa-envelope"></i></div>
-                <div class="c-text"><small>邮箱</small><strong>18689631383@163.com</strong></div>
-            </a>
-            <div class="contact-link">
-                <div class="c-icon"><i class="fa-solid fa-location-dot"></i></div>
-                <div class="c-text"><small>坐标</small><strong>海南 · 海口</strong></div>
-            </div>
-        </div>
-    </section>
+    <!-- ===== 手作 ===== -->
+    <div class="section-head" style="margin-top:22px;">
+        <h3>手作展示区</h3>
+        <p>作品照片带留白呈现，预留未来添加空间。</p>
+    </div>
+    <div class="rule"></div>
+    <div class="gallery-grid">
+        <article class="gallery-panel reveal">
+            <img src="images/微信图片_20260612140034_276_25.jpg" alt="手工作品1">
+            <div class="cap"><strong>手工作品 01</strong>突出材料质感与成品完成度。</div>
+        </article>
+        <article class="gallery-panel reveal">
+            <img src="images/微信图片_20260612140137_277_25.jpg" alt="手工作品2">
+            <div class="cap"><strong>手工作品 02</strong>保留照片完整视觉。</div>
+        </article>
+        <aside class="slot-panel reveal">
+            <div class="slot big">预留更多作品位<br>拼豆、陶艺、调香、银饰…</div>
+            <div class="slot">作品标题、时间、材料说明</div>
+            <div class="slot">细节近景图</div>
+        </aside>
+    </div>
 
-    <footer>
-        <div class="flower-row">🌸 ✿ 🌷 ✦ 🌸 ✿ 🌷</div>
-        <p>© 2026 李昊冉 · 期待加入章鱼陶陶艺术馆</p>
-    </footer>
+    <!-- ===== 联系 ===== -->
+    <div class="section-head" style="margin-top:22px;"><h3>联系方式</h3></div>
+    <div class="rule"></div>
+    <div class="contact-grid reveal">
+        <div class="contact-box"><div class="k">电话</div><div class="v"><a href="tel:18689631383">186 8963 1383</a></div></div>
+        <div class="contact-box"><div class="k">邮箱</div><div class="v"><a href="mailto:18689631383@163.com">18689631383@163.com</a></div></div>
+        <div class="contact-box"><div class="k">所在地</div><div class="v">海口</div></div>
+    </div>
+
+    <footer>© 2026 李昊冉 · 期待加入章鱼陶陶艺术馆</footer>
 </div>
 
 <script>
 (function(){
-    const flowers = ['🌸','✿','🌷','💮','🩷','🌺','✾','🌼'];
-    const container = document.getElementById('petals');
-    for(let i=0;i<28;i++){
-        const p = document.createElement('span');
-        p.className = 'petal';
-        p.textContent = flowers[Math.floor(Math.random()*flowers.length)];
-        p.style.left = Math.random()*100+'%';
-        p.style.fontSize = (18 + Math.random()*18)+'px';
-        p.style.animationDuration = (10 + Math.random()*14)+'s';
-        p.style.animationDelay = Math.random()*12+'s';
-        p.style.opacity = 0.35 + Math.random()*0.4;
-        container.appendChild(p);
+    const f=['🌸','✿','🌷','💮','🩷','🌺','✾','🌼'];
+    const c=document.getElementById('petals');
+    for(let i=0;i<26;i++){
+        const p=document.createElement('span');p.className='petal';
+        p.textContent=f[Math.floor(Math.random()*f.length)];
+        p.style.left=Math.random()*100+'%';
+        p.style.fontSize=(16+Math.random()*16)+'px';
+        p.style.animationDuration=(10+Math.random()*14)+'s';
+        p.style.animationDelay=Math.random()*12+'s';
+        p.style.opacity=0.3+Math.random()*0.4;
+        c.appendChild(p);
     }
 })();
-
 (function(){
-    const items = document.querySelectorAll('.reveal');
-    const onScroll = () => {
-        const bottom = window.innerHeight * 0.9;
-        items.forEach(el => {
-            if(el.getBoundingClientRect().top < bottom) el.classList.add('on');
-        });
+    const items=document.querySelectorAll('.reveal');
+    const onScroll=()=>{
+        const b=window.innerHeight*.9;
+        items.forEach(el=>{if(el.getBoundingClientRect().top<b)el.classList.add('on');});
     };
-    window.addEventListener('scroll', onScroll);
-    onScroll();
+    window.addEventListener('scroll',onScroll);onScroll();
 })();
 </script>
 </body>
