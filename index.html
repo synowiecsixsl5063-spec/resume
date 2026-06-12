@@ -1,447 +1,406 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>李昊冉 | 灵感与手作空间</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
-    <style>
-        :root {
-            --color-bg: #F9F6F0;
-            --color-primary: #D97D64;
-            --color-secondary: #7A9A88;
-            --color-text-main: #2C2523;
-            --color-text-muted: #706561;
-            --color-white: #FFFFFF;
-            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans CJK SC", sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>李昊冉 | 灵感与手作空间</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+<style>
+:root {
+    --pink-glass: rgba(255, 200, 215, 0.35);
+    --pink-strong: rgba(255, 160, 180, 0.55);
+    --pink-light: rgba(255, 220, 235, 0.45);
+    --white-glass: rgba(255,255,255,0.55);
+    --card-glass: rgba(255,255,255,0.65);
+    --text-main: #3D2C35;
+    --text-muted: #7A6068;
+    --accent: #E892A8;
+    --shadow: 0 8px 32px rgba(180,130,150,0.12);
+}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+* { box-sizing:border-box; margin:0; padding:0; }
 
-        body {
-            background-color: var(--color-bg);
-            color: var(--color-text-main);
-            font-family: var(--font-family);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
+body {
+    background: linear-gradient(170deg, #FFF5F8 0%, #FFE8F0 20%, #FFF0F5 45%, #FDE8F0 70%, #FFF5FA 100%);
+    background-attachment: fixed;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Roboto,"Helvetica Neue",Arial,sans-serif;
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
 
-        .smooth-transition {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+/* ===== 飘落花瓣 ===== */
+.petals-container {
+    position: fixed; top:0; left:0; width:100%; height:100%;
+    pointer-events: none; z-index: 0; overflow: hidden;
+}
+.petal {
+    position: absolute; top: -60px;
+    animation: petalFall linear infinite;
+    opacity: 0.7;
+    font-size: 22px;
+    filter: blur(0.5px);
+}
+@keyframes petalFall {
+    0%   { transform: translateY(-60px) rotate(0deg) translateX(0px); opacity: 0.8; }
+    25%  { transform: translateY(25vh) rotate(90deg) translateX(30px); opacity: 0.6; }
+    50%  { transform: translateY(50vh) rotate(180deg) translateX(-20px); opacity: 0.7; }
+    75%  { transform: translateY(75vh) rotate(270deg) translateX(25px); opacity: 0.5; }
+    100% { transform: translateY(105vh) rotate(360deg) translateX(-10px); opacity: 0.3; }
+}
 
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+/* ===== 主容器 ===== */
+.main-container {
+    position: relative; z-index: 1;
+    max-width: 520px; margin: 0 auto; padding: 0 20px;
+}
 
-        .scroll-reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+/* ===== 头部 ===== */
+.hero {
+    text-align: center; padding: 50px 0 24px;
+    position: relative;
+}
+.hero-flowers {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    font-size: 36px; letter-spacing: 6px; opacity: 0.7;
+    animation: heroFloat 4s ease-in-out infinite;
+}
+@keyframes heroFloat {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50%     { transform: translateX(-50%) translateY(-8px); }
+}
 
-        .container {
-            width: 100%;
-            max-width: 480px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+.avatar-wrap {
+    position: relative; width: 120px; height: 120px; margin: 0 auto 18px;
+}
+.avatar-glow {
+    position: absolute; top:-12px; left:-12px; right:-12px; bottom:-12px;
+    border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%;
+    background: linear-gradient(135deg, rgba(255,180,200,0.5), rgba(255,210,230,0.25), rgba(200,160,220,0.35));
+    animation: glowMorph 6s ease-in-out infinite;
+}
+@keyframes glowMorph {
+    0%,100% { border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%; }
+    50%     { border-radius: 45% 55% 50% 55% / 55% 45% 55% 45%; }
+}
+.avatar-img {
+    position: relative; width: 120px; height: 120px; object-fit: cover;
+    border-radius: 50%; border: 3px solid rgba(255,255,255,0.8);
+    box-shadow: 0 4px 24px rgba(200,150,170,0.25);
+    z-index: 1; background: #FDF0E8;
+}
+.avatar-fallback {
+    position: relative; width: 120px; height: 120px; border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.8); z-index: 1;
+    background: linear-gradient(135deg, #FFE0EA, #FFD0DD);
+    display: none; align-items: center; justify-content: center; font-size: 56px;
+    box-shadow: 0 4px 24px rgba(200,150,170,0.25);
+    margin: 0 auto;
+}
 
-        /* 顶部 */
-        .hero {
-            padding-top: 54px;
-            padding-bottom: 40px;
-            text-align: center;
-        }
+.hero h1 { font-size: 26px; font-weight: 700; letter-spacing: 1px; margin-bottom: 4px; }
+.hero .sub { font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 16px; }
 
-        .avatar-wrapper {
-            position: relative;
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 20px;
-        }
+/* ===== 玻璃卡片 ===== */
+.glass-card {
+    background: var(--card-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px; padding: 26px 22px; margin-bottom: 18px;
+    border: 1px solid rgba(255,220,235,0.5);
+    box-shadow: var(--shadow);
+    position: relative; overflow: hidden;
+}
+.glass-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+}
+.glass-card .card-flowers {
+    position: absolute; top:-10px; right:-6px; font-size: 28px; opacity: 0.35;
+    pointer-events: none; transform: rotate(15deg);
+}
+.section-title {
+    font-size: 17px; font-weight: 600; margin-bottom: 18px;
+    display: flex; align-items: center; gap: 8px;
+}
+.section-title i { color: var(--accent); font-size: 15px; }
 
-        .avatar-shape {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--color-primary);
-            border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
-            animation: morphing 8s infinite ease-in-out;
-            opacity: 0.15;
-        }
+/* ===== 标签 ===== */
+.tag-row {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+}
+.tag {
+    background: rgba(255,255,255,0.7); backdrop-filter: blur(8px);
+    padding: 7px 16px; border-radius: 100px; font-size: 12px;
+    color: var(--text-muted); border: 1px solid rgba(255,190,210,0.4);
+    transition: all 0.3s;
+}
+.tag:hover {
+    background: var(--pink-glass); transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220,150,170,0.2);
+}
 
-        .avatar-img {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 3px solid var(--color-white);
-            box-shadow: 0 8px 24px rgba(44, 37, 35, 0.06);
-            background: #FDF0E8;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+/* ===== 照片墙 ===== */
+.photo-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.photo-card {
+    border-radius: 18px; overflow: hidden; aspect-ratio: 1/1;
+    position: relative; background: rgba(255,220,235,0.3);
+    box-shadow: 0 4px 16px rgba(180,140,160,0.12);
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s;
+    cursor: pointer;
+}
+.photo-card:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 12px 32px rgba(200,150,175,0.25);
+}
+.photo-card img { width: 100%; height: 100%; object-fit: cover; }
+.photo-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 10px 12px;
+    background: linear-gradient(transparent, rgba(100,50,70,0.45));
+    color: #fff; font-size: 11px; font-weight: 500;
+}
 
-        .profile-name {
-            font-size: 24px;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-            margin-bottom: 6px;
-        }
+/* ===== 肥嘟嘟左卫门卡片 ===== */
+.zueimon-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.zueimon-card {
+    background: rgba(255,245,248,0.7); backdrop-filter: blur(12px);
+    border-radius: 20px; padding: 18px 14px;
+    text-align: center; border: 1px solid rgba(255,200,220,0.5);
+    box-shadow: 0 4px 16px rgba(200,160,180,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.zueimon-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(200,160,180,0.2);
+}
+.zueimon-card .cat-img {
+    width: 80px; height: 80px; border-radius: 50%; object-fit: cover;
+    margin: 0 auto 10px; background: linear-gradient(135deg, #FFF0E8, #FFE0D5);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px; box-shadow: 0 4px 12px rgba(200,160,170,0.2);
+    border: 2px solid rgba(255,255,255,0.6);
+}
+.zueimon-card h4 {
+    font-size: 13px; margin-bottom: 4px; color: var(--text-main);
+}
+.zueimon-card p {
+    font-size: 11px; color: var(--text-muted); line-height: 1.5;
+}
 
-        .profile-title {
-            font-size: 14px;
-            color: var(--color-primary);
-            font-weight: 500;
-            margin-bottom: 20px;
-        }
+/* ===== 时间轴 ===== */
+.timeline { display: flex; flex-direction: column; gap: 18px; }
+.timeline-item {
+    position: relative; padding-left: 22px;
+    border-left: 2px dashed rgba(230,170,190,0.6);
+}
+.timeline-item::before {
+    content: '🌸'; position: absolute; left: -12px; top: -2px;
+    font-size: 14px;
+}
+.timeline-item h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.timeline-item .meta { font-size: 11px; color: var(--accent); font-weight: 500; }
+.timeline-item p { font-size: 12.5px; color: var(--text-muted); margin-top: 4px; line-height: 1.65; }
 
-        .tag-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
+/* ===== 联系 ===== */
+.contact-row { display: flex; flex-direction: column; gap: 10px; }
+.contact-link {
+    display: flex; align-items: center; gap: 14px; padding: 14px 16px;
+    background: rgba(255,255,255,0.55); backdrop-filter: blur(10px);
+    border-radius: 16px; text-decoration: none; color: inherit;
+    border: 1px solid rgba(255,200,215,0.4);
+    transition: all 0.3s;
+}
+.contact-link:hover {
+    background: var(--pink-glass); transform: translateX(4px);
+}
+.contact-link .c-icon {
+    width: 38px; height: 38px; border-radius: 12px;
+    background: rgba(255,210,225,0.5);
+    display: flex; align-items: center; justify-content: center;
+    color: #D48095; font-size: 15px;
+}
+.contact-link .c-text small { font-size: 10px; color: var(--text-muted); display: block; }
+.contact-link .c-text strong { font-size: 13px; font-weight: 500; }
 
-        .tag-item {
-            background-color: var(--color-white);
-            color: var(--color-text-muted);
-            font-size: 12px;
-            padding: 6px 14px;
-            border-radius: 100px;
-            border: 1px solid rgba(217, 125, 100, 0.12);
-            box-shadow: 0 2px 6px rgba(44, 37, 35, 0.02);
-        }
+/* ===== 底部 ===== */
+footer {
+    text-align: center; padding: 28px 0 44px;
+    font-size: 11px; color: var(--text-muted); letter-spacing: 0.5px;
+}
+footer .flower-row { font-size: 18px; letter-spacing: 3px; margin-bottom: 8px; opacity: 0.6; }
 
-        /* 通用板块 */
-        .section-block {
-            background-color: var(--color-white);
-            border-radius: 28px;
-            padding: 28px 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 10px 30px rgba(44, 37, 35, 0.03);
-            border: 1px solid rgba(122, 154, 136, 0.08);
-        }
+/* ===== 滚动动效 ===== */
+.reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.on { opacity: 1; transform: translateY(0); }
 
-        .section-heading {
-            font-size: 17px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .section-heading i {
-            color: var(--color-secondary);
-            font-size: 16px;
-        }
-
-        /* 手作展示 */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .gallery-item {
-            position: relative;
-            border-radius: 18px;
-            overflow: hidden;
-            background-color: #EFECE6;
-            aspect-ratio: 1 / 1;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(44, 37, 35, 0.4));
-            padding: 12px;
-            opacity: 0.9;
-        }
-
-        .gallery-label {
-            color: var(--color-white);
-            font-size: 11px;
-            font-weight: 500;
-        }
-
-        /* 经历时间轴 */
-        .timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .timeline-node {
-            position: relative;
-            padding-left: 20px;
-            border-left: 2px dashed var(--color-secondary);
-        }
-
-        .timeline-node::before {
-            content: '';
-            position: absolute;
-            left: -6px;
-            top: 4px;
-            width: 10px;
-            height: 10px;
-            background-color: var(--color-white);
-            border: 2px solid var(--color-primary);
-            border-radius: 50%;
-        }
-
-        .node-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 6px;
-        }
-
-        .node-title {
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .node-meta {
-            font-size: 11px;
-            color: var(--color-primary);
-            font-weight: 500;
-        }
-
-        .node-desc {
-            font-size: 13px;
-            color: var(--color-text-muted);
-            text-align: justify;
-        }
-
-        /* 联系方式 */
-        .contact-list {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .contact-card {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            text-decoration: none;
-            color: inherit;
-            padding: 12px 16px;
-            background-color: var(--color-bg);
-            border-radius: 16px;
-        }
-
-        .contact-card:hover {
-            background-color: rgba(217, 125, 100, 0.06);
-            transform: translateX(4px);
-        }
-
-        .contact-icon {
-            width: 36px;
-            height: 36px;
-            background-color: var(--color-white);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-primary);
-            font-size: 14px;
-            box-shadow: 0 4px 12px rgba(44, 37, 35, 0.02);
-        }
-
-        .contact-details {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .contact-label {
-            font-size: 11px;
-            color: var(--color-text-muted);
-        }
-
-        .contact-value {
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        footer {
-            text-align: center;
-            padding: 24px 0 48px;
-            font-size: 11px;
-            color: var(--color-text-muted);
-            letter-spacing: 0.5px;
-        }
-
-        @keyframes morphing {
-            0% { border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%; }
-            50% { border-radius: 60% 40% 40% 60% / 60% 60% 40% 40%; }
-            100% { border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%; }
-        }
-
-        @media (max-width: 375px) {
-            .container { padding: 0 16px; }
-            .section-block { padding: 24px 18px; }
-            .profile-name { font-size: 22px; }
-        }
-    </style>
+/* ===== 手机 ===== */
+@media (max-width: 380px) {
+    .main-container { padding: 0 14px; }
+    .glass-card { padding: 22px 16px; }
+    .hero h1 { font-size: 23px; }
+    .photo-grid, .zueimon-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+}
+</style>
 </head>
 <body>
 
-    <div class="container">
-        <header class="hero">
-            <div class="avatar-wrapper">
-                <div class="avatar-shape"></div>
-                <img src="images/avatar.png" alt="李昊冉" class="avatar-img"
-                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                <div class="avatar-img" style="display:none; position:relative; z-index:2;">🐙</div>
+<!-- 飘落花瓣 -->
+<div class="petals-container" id="petals"></div>
+
+<div class="main-container">
+
+    <!-- ===== 头部 ===== -->
+    <header class="hero reveal">
+        <div class="hero-flowers">🌸 ✿ 🌷 ✦ 🌸</div>
+        <div class="avatar-wrap">
+            <div class="avatar-glow"></div>
+            <img src="images/avatar.png" alt="李昊冉" class="avatar-img"
+                 onerror="this.style.display='none';document.getElementById('avatarFallback').style.display='flex';">
+            <div id="avatarFallback" class="avatar-fallback">🐙</div>
+        </div>
+        <h1>李昊冉</h1>
+        <p class="sub">生态学在读 · 手工DIY重度爱好者</p>
+        <div class="tag-row">
+            <span class="tag">🌿 海南大学在读</span>
+            <span class="tag">🎨 手工DIY爱好者</span>
+            <span class="tag">💪 耐心满分</span>
+            <span class="tag">⚡ 执行力强</span>
+            <span class="tag">😊 活力开朗</span>
+        </div>
+    </header>
+
+    <!-- ===== 手作作品 ===== -->
+    <section class="glass-card reveal">
+        <div class="card-flowers">✿ 🌸</div>
+        <h2 class="section-title"><i class="fa-solid fa-shapes"></i> 手作灵感</h2>
+        <div class="photo-grid">
+            <div class="photo-card">
+                <img src="images/微信图片_20260612140034_276_25.jpg" alt="手工作品">
+                <div class="photo-label">🪴 作品 01</div>
             </div>
-            <h1 class="profile-name">李昊冉</h1>
-            <p class="profile-title">生态学在读 • 手工DIY重度爱好者</p>
-            <div class="tag-cloud">
-                <span class="tag-item">海南大学在读</span>
-                <span class="tag-item">手工DIY爱好者</span>
-                <span class="tag-item">耐心</span>
-                <span class="tag-item">执行力</span>
-                <span class="tag-item">开朗</span>
+            <div class="photo-card">
+                <img src="images/微信图片_20260612140137_277_25.jpg" alt="手工作品">
+                <div class="photo-label">✨ 作品 02</div>
             </div>
-        </header>
+        </div>
+    </section>
 
-        <main>
-            <section class="section-block scroll-reveal">
-                <h2 class="section-heading">
-                    <i class="fa-solid fa-shapes"></i>
-                    <span>手作灵感现存</span>
-                </h2>
-                <div class="gallery-grid">
-                    <div class="gallery-item smooth-transition">
-                        <img src="images/微信图片_20260612140034_276_25.jpg" alt="手工作品1">
-                        <div class="gallery-overlay">
-                            <span class="gallery-label">作品案例 01</span>
-                        </div>
-                    </div>
-                    <div class="gallery-item smooth-transition">
-                        <img src="images/微信图片_20260612140137_277_25.jpg" alt="手工作品2">
-                        <div class="gallery-overlay">
-                            <span class="gallery-label">作品案例 02</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    <!-- ===== 肥嘟嘟左卫门卡片 ===== -->
+    <section class="glass-card reveal">
+        <div class="card-flowers">🐱 🌸</div>
+        <h2 class="section-title"><i class="fa-solid fa-cat"></i> 肥嘟嘟左卫门 · 我的精神图腾</h2>
+        <div class="zueimon-grid">
+            <div class="zueimon-card">
+                <div class="cat-img">🐱</div>
+                <h4>肥嘟嘟·吃货形态</h4>
+                <p>和左卫门一样，看到好吃的就走不动路。做手工的时候旁边必须放零食。</p>
+            </div>
+            <div class="zueimon-card">
+                <div class="cat-img">😼</div>
+                <h4>肥嘟嘟·认真形态</h4>
+                <p>平时懒洋洋，但一旦开始做陶艺/拼豆就停不下来，和左卫门护食时一个样。</p>
+            </div>
+            <div class="zueimon-card">
+                <div class="cat-img">😸</div>
+                <h4>肥嘟嘟·社交形态</h4>
+                <p>左卫门在春日部人缘超好。我也一样——跟谁都能聊起来，客人来了就是朋友。</p>
+            </div>
+            <div class="zueimon-card">
+                <div class="cat-img">🐾</div>
+                <h4>肥嘟嘟·打工形态</h4>
+                <p>虽然看起来呆呆的，但交代的事情一定做好。左卫门精神：踏实、靠谱、偶尔卖萌。</p>
+            </div>
+        </div>
+    </section>
 
-            <section class="section-block scroll-reveal">
-                <h2 class="section-heading">
-                    <i class="fa-solid fa-compass"></i>
-                    <span>我的经历沉淀</span>
-                </h2>
-                <div class="timeline">
-                    <div class="timeline-node">
-                        <div class="node-header">
-                            <h3 class="node-title">实验室助理</h3>
-                            <span class="node-meta">校园</span>
-                        </div>
-                        <p class="node-desc">培养了极高标准的精密手工操作习惯。习惯按标准流程作业，能够保持长时间高度专注，注重器皿物料摆放与环境秩序感。</p>
-                    </div>
-                    <div class="timeline-node">
-                        <div class="node-header">
-                            <h3 class="node-title">校园实地调研</h3>
-                            <span class="node-meta">实践</span>
-                        </div>
-                        <p class="node-desc">负责团队出行物资的高效清点、核对与归包，确保野外多变环境下零失误。归来后承担海量样本资料的科学分类与编号归档。</p>
-                    </div>
-                    <div class="timeline-node">
-                        <div class="node-header">
-                            <h3 class="node-title">志愿服务</h3>
-                            <span class="node-meta">社会</span>
-                        </div>
-                        <p class="node-desc">负责活动现场的接待、沟通与路线引导。配合完成高强度场地布置与物资搬运，具备极佳的团队配合度与服务热忱。</p>
-                    </div>
-                </div>
-            </section>
+    <!-- ===== 经历 ===== -->
+    <section class="glass-card reveal">
+        <div class="card-flowers">📋 🌷</div>
+        <h2 class="section-title"><i class="fa-solid fa-compass"></i> 经历沉淀</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>实验室助理</h4>
+                <span class="meta">校园日常</span>
+                <p>培养了精密手工操作习惯——高精度天平称量、试剂配比，手法稳、误差小。习惯按标准流程作业，保持长时间专注，注重环境秩序感。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>校园实地调研</h4>
+                <span class="meta">实践项目</span>
+                <p>负责团队出行物资清点核对与打包，野外多变环境下零失误。归来后承担资料的科学分类与编号归档，整理有条理。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>小动物保护协会 · 志愿服务</h4>
+                <span class="meta">社会服务</span>
+                <p>活动现场接待来访市民，引导答疑不怯场。配合完成场地布置与撤场，服从调度，团队配合度高。</p>
+            </div>
+        </div>
+    </section>
 
-            <section class="section-block scroll-reveal">
-                <h2 class="section-heading">
-                    <i class="fa-solid fa-paper-plane"></i>
-                    <span>随时建立联系</span>
-                </h2>
-                <div class="contact-list">
-                    <a href="tel:18689631383" class="contact-card smooth-transition">
-                        <div class="contact-icon">
-                            <i class="fa-solid fa-phone"></i>
-                        </div>
-                        <div class="contact-details">
-                            <span class="contact-label">致电联系</span>
-                            <span class="contact-value">186 8963 1383</span>
-                        </div>
-                    </a>
-                    <a href="mailto:18689631383@163.com" class="contact-card smooth-transition">
-                        <div class="contact-icon">
-                            <i class="fa-solid fa-envelope"></i>
-                        </div>
-                        <div class="contact-details">
-                            <span class="contact-label">电子邮箱</span>
-                            <span class="contact-value">18689631383@163.com</span>
-                        </div>
-                    </a>
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fa-solid fa-location-dot"></i>
-                        </div>
-                        <div class="contact-details">
-                            <span class="contact-label">当前坐标</span>
-                            <span class="contact-value">海南 • 海口</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
+    <!-- ===== 联系 ===== -->
+    <section class="glass-card reveal">
+        <div class="card-flowers">💌 🌸</div>
+        <h2 class="section-title"><i class="fa-solid fa-paper-plane"></i> 联系我</h2>
+        <div class="contact-row">
+            <a href="tel:18689631383" class="contact-link">
+                <div class="c-icon"><i class="fa-solid fa-phone"></i></div>
+                <div class="c-text"><small>电话</small><strong>186 8963 1383</strong></div>
+            </a>
+            <a href="mailto:18689631383@163.com" class="contact-link">
+                <div class="c-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div class="c-text"><small>邮箱</small><strong>18689631383@163.com</strong></div>
+            </a>
+            <div class="contact-link">
+                <div class="c-icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="c-text"><small>坐标</small><strong>海南 · 海口</strong></div>
+            </div>
+        </div>
+    </section>
 
-        <footer>
-            <p>© 2026 李昊冉. 期待加入章鱼陶陶艺术馆.</p>
-        </footer>
-    </div>
+    <footer>
+        <div class="flower-row">🌸 ✿ 🌷 ✦ 🌸 ✿ 🌷</div>
+        <p>© 2026 李昊冉 · 期待加入章鱼陶陶艺术馆</p>
+    </footer>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('.scroll-reveal');
+<script>
+// === 花瓣 ===
+(function(){
+    const flowers = ['🌸','✿','🌷','💮','🩷','🌺','✾','🌼'];
+    const container = document.getElementById('petals');
+    for(let i=0;i<28;i++){
+        const p = document.createElement('span');
+        p.className = 'petal';
+        p.textContent = flowers[Math.floor(Math.random()*flowers.length)];
+        p.style.left = Math.random()*100+'%';
+        p.style.fontSize = (18 + Math.random()*18)+'px';
+        p.style.animationDuration = (10 + Math.random()*14)+'s';
+        p.style.animationDelay = Math.random()*12+'s';
+        p.style.opacity = 0.35 + Math.random()*0.4;
+        container.appendChild(p);
+    }
+})();
 
-            const revealOnScroll = () => {
-                const triggerBottom = window.innerHeight * 0.92;
-                sections.forEach(section => {
-                    const sectionTop = section.getBoundingClientRect().top;
-                    if (sectionTop < triggerBottom) {
-                        section.classList.add('active');
-                    }
-                });
-            };
-
-            window.addEventListener('scroll', revealOnScroll);
-            revealOnScroll();
+// === 滚动 ===
+(function(){
+    const items = document.querySelectorAll('.reveal');
+    const onScroll = () => {
+        const bottom = window.innerHeight * 0.9;
+        items.forEach(el => {
+            if(el.getBoundingClientRect().top < bottom) el.classList.add('on');
         });
-    </script>
+    };
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+})();
+</script>
 </body>
 </html>
