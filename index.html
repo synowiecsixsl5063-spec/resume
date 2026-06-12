@@ -43,25 +43,7 @@ body {
     100% { transform:translateY(105vh) rotate(360deg) translateX(-10px); opacity:0.25; }
 }
 
-/* ===== 头像与肥嘟嘟左卫门 · 场景化联动 ===== */
-.portrait-row {
-    display:flex; gap:14px; align-items:center; cursor:pointer;
-    position:relative; z-index:4;
-    transition:transform .3s cubic-bezier(0.25,1,0.5,1);
-}
-.portrait-row:hover { transform:translateY(-2px); }
-.avatar-img {
-    width:88px; height:88px; border-radius:24px; object-fit:cover;
-    border:1px solid rgba(255,255,255,.8);
-    box-shadow:0 12px 28px rgba(120,60,90,.06); background:#fff;
-    transition:transform .3s cubic-bezier(0.25,1,0.5,1), box-shadow .3s ease;
-}
-.portrait-row:hover .avatar-img {
-    transform:scale(1.06) rotate(-2deg);
-    box-shadow:0 16px 36px rgba(120,60,90,.12);
-}
-.portrait-copy h2 { margin:0 0 4px; font-size:20px; font-weight:700; color:#3D2C35; }
-.portrait-copy p { margin:0; color:#7A6068; line-height:1.6; font-size:13px; }
+/* ===== 肥嘟嘟左卫门 · 装饰与联动 ===== */
 
 /* 对话泡泡 */
 .visual-bridge {
@@ -108,14 +90,6 @@ body {
     0%,100%{transform:translateY(0) scale(1);}
     50%{transform:translateY(-6px) scale(1.02);}
 }
-/* 头像hover → 肥嘟嘟跳跃联动 */
-.portrait-row:hover ~ .mascot-stage .zueimon-hero {
-    animation:zueimonGreet .45s cubic-bezier(0.25,1,0.5,1) infinite alternate !important;
-}
-@keyframes zueimonGreet {
-    0%{transform:translateY(2px) scale(1) rotate(0deg);}
-    100%{transform:translateY(-16px) scale(1.05) rotate(4deg);}
-}
 .mascot-note {
     position:absolute; left:14px; right:14px; bottom:12px;
     font-size:11px; color:#947683;
@@ -159,10 +133,6 @@ body {
     .zueimon-jump,.zueimon-sketch{display:none!important;}
 }
 @media (max-width:480px) {
-    .portrait-row{margin-bottom:-12px;}
-    .avatar-img{width:76px;height:76px;border-radius:20px;}
-    .portrait-copy h2{font-size:17px;}
-    .portrait-copy p{font-size:12px;}
     .visual-bridge{margin:-4px 20px -8px 0;}
     .mascot-stage{min-height:220px;padding-bottom:20px;}
     .mascot-stage .zueimon-hero{width:45%;}
@@ -197,6 +167,11 @@ body {
     border-radius:clamp(22px,3vw,36px);
 }
 .hero-l { padding:clamp(20px,3.5vw,38px); display:grid; gap:20px; align-content:start; }
+.name-avatar-row { display:flex; align-items:center; gap:20px; }
+.avatar-img-big { width:100px; height:100px; border-radius:28px; object-fit:cover; border:2px solid rgba(255,255,255,.8); box-shadow:0 12px 28px rgba(120,60,90,.1); background:#fff; flex-shrink:0; }
+.name-col { display:flex; flex-direction:column; }
+.name-col h1 { margin:0 0 2px; }
+@media (max-width:600px) { .name-avatar-row{flex-direction:column; align-items:flex-start; gap:12px;} .avatar-img-big{width:80px;height:80px;border-radius:22px;} }
 .hero-r { padding:20px; display:grid; gap:14px; align-content:start; }
 
 .eyebrow {
@@ -342,7 +317,15 @@ footer {
     <section class="hero">
         <div class="hero-l">
             <span class="eyebrow">海南大学在读 · 章鱼陶陶艺术馆应聘中</span>
-            <h1>李昊冉</h1>
+            <div class="name-avatar-row">
+                <img class="avatar-img-big" src="images/avatar.png?v=2" alt="李昊冉"
+                     onerror="this.style.display='none';document.getElementById('afb2').style.display='flex';">
+                <div id="afb2" style="display:none;width:100px;height:100px;border-radius:28px;background:linear-gradient(135deg,#FFE0EA,#FFD0DD);align-items:center;justify-content:center;font-size:46px;">🐙</div>
+                <div class="name-col">
+                    <h1>李昊冉</h1>
+                    <p class="subtitle" style="margin-bottom:0;">生态学在读 · 手工DIY重度爱好者</p>
+                </div>
+            </div>
             <p class="subtitle">我把认真、耐心和执行力，做成了可见的手工细节；也把开朗、亲和与配合度，放进了每一次与人协作的过程里。</p>
             <div class="tags-row">
                 <span class="tag">🌿 海南大学在读</span>
@@ -359,15 +342,6 @@ footer {
             </div>
         </div>
         <div class="hero-r">
-            <div class="portrait-row">
-                <img class="avatar-img" src="images/avatar.png" alt="李昊冉"
-                     onerror="this.style.display='none';document.getElementById('afb').style.display='flex';">
-                <div id="afb" style="display:none; width:88px;height:88px;border-radius:24px;background:linear-gradient(135deg,#FFE0EA,#FFD0DD);align-items:center;justify-content:center;font-size:40px;">🐙</div>
-                <div class="portrait-copy">
-                    <h2>温柔但不虚弱<br>细致但不拘谨</h2>
-                    <p>把个人优势做成更适合展示的视觉语言。</p>
-                </div>
-            </div>
 
             <div class="visual-bridge">
                 <div class="mascot-bubble">这就是我的精神图腾！✨</div>
