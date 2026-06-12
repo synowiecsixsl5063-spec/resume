@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>李昊冉 · 求职简历</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Roboto,Helvetica,Arial,sans-serif;
+    font-size:14px;line-height:1.6;color:#24292e;background:#f6f8fa;
+    display:flex;justify-content:center;padding:24px 12px;
+  }
+  .resume{max-width:760px;width:100%;background:#fff;padding:36px 48px;border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+
+  /* 头部 */
+  .header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;padding-bottom:16px;border-bottom:2px solid #24292e}
+  .header-left h1{font-size:28px;font-weight:600;letter-spacing:2px;margin-bottom:6px}
+  .header-left .contact{font-size:13px;color:#586069;line-height:1.8}
+  .header-left .contact .sep{color:#d1d5da;margin:0 8px}
+  /* 照片框 */
+  .photo-box{
+    flex-shrink:0;width:96px;height:132px;border:1px solid #d1d5da;border-radius:3px;background:#fafbfc;
+    display:flex;align-items:center;justify-content:center;color:#959da5;font-size:12px;text-align:center;line-height:1.5
+  }
+
+  /* 求职意向 */
+  .intent{text-align:center;font-size:14px;color:#24292e;margin-bottom:14px;padding:6px 0;background:#f6f8fa;border-radius:4px;font-weight:500}
+
+  /* 区块标题 */
+  h2{font-size:16px;font-weight:600;color:#24292e;padding-bottom:6px;margin:18px 0 10px;border-bottom:1px solid #eaecef}
+
+  /* 教育 */
+  .edu-line{display:flex;justify-content:space-between;align-items:baseline;font-size:14px}
+  .edu-line .school{font-weight:600}
+  .edu-line .detail{color:#586069;font-size:13px}
+  .edu-line .date{color:#586069;font-size:13px;white-space:nowrap}
+
+  /* 工作经历 */
+  .job{margin-bottom:14px}
+  .job h3{font-size:15px;font-weight:600;color:#24292e;margin-bottom:5px}
+  .job ul{list-style:none;padding:0}
+  .job ul li{position:relative;padding-left:14px;margin-bottom:4px;font-size:14px;color:#24292e;line-height:1.65}
+  .job ul li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;background:#959da5;border-radius:50%}
+
+  /* 技能 */
+  .skill-row{display:flex;margin-bottom:4px;font-size:14px;line-height:1.6}
+  .skill-label{width:80px;font-weight:600;flex-shrink:0}
+  .skill-text{color:#586069}
+
+  /* 尾部 */
+  .footer{text-align:center;margin-top:16px;padding-top:12px;border-top:1px solid #eaecef;font-size:13px;color:#959da5;letter-spacing:1px}
+
+  /* 占位符 */
+  .ph{color:#0366d6;border-bottom:1px dashed #0366d6;cursor:text}
+
+  @media print{
+    body{background:#fff;padding:0}
+    .resume{max-width:100%;box-shadow:none;border-radius:0;padding:30px 40px}
+    .intent,.photo-box{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .job ul li::before{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  @page{size:A4;margin:0}
+</style>
+</head>
+<body>
+<div class="resume">
+
+  <!-- ========== 头部 ========== -->
+  <div class="header">
+    <div class="header-left">
+      <!-- 👇 改名字 -->
+      <h1><span class="ph">李昊冉</span></h1>
+      <div class="contact">
+        <!-- 👇 改电话、现居地、邮箱 -->
+        <span>📞 <span class="ph">18689631383</span></span>
+        <span class="sep">|</span>
+        <span>📍 <span class="ph">海口</span></span>
+        <span class="sep">|</span>
+        <span>📧 <span class="ph">18689631383@163.com</span></span>
+      </div>
+    </div>
+    <!-- 👇 替换为证件照 -->
+    <div class="photo-box">一寸<br>照片</div>
+  </div>
+
+  <!-- 👇 改意向岗位 -->
+  <div class="intent">求职意向：服务员 / 普工 / 打杂短工 · 随时到岗</div>
+
+  <!-- ========== 教育背景 ========== -->
+  <h2>教育背景</h2>
+  <div class="edu-line">
+    <!-- 👇 改学校名、专业、时间 -->
+    <span><span class="school"><span class="ph">海南大学</span></span> · <span class="detail">生态学 · 本科</span></span>
+    <span class="date">2022.09 — 2026.06</span>
+  </div>
+
+  <!-- ========== 工作经历 ========== -->
+  <h2>工作经历</h2>
+
+  <div class="job">
+    <h3>实验室助理</h3>
+    <ul>
+      <li>负责实验室日常清洁消毒，包括台面、地面及器材表面擦拭，确保工作区域整洁有序、物品归位</li>
+      <li>负责试剂与耗材的称量、配比、入库登记和定期盘点，保证库存数据准确、补给及时</li>
+      <li>每日对贵重设备进行除尘保养，操作细心，全年无因清洁不当导致的设备故障</li>
+      <li>适应长时间站立作业，单次值班通常持续 6—8 小时，体力充沛</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <h3>校园实地调研助理</h3>
+    <ul>
+      <li>随团队赴省内外多个城市公园开展实地走访，负责出行前后勤物资的清点、打包与核对，从未出现遗漏</li>
+      <li>在现场协助带队老师维持秩序，协调人员的休息安排与物资补给</li>
+      <li>调研结束后对收集的资料进行分类、编号和归档，整理效率高、条目清晰</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <h3>小动物保护协会 · 社区志愿服务</h3>
+    <ul>
+      <li>负责活动场地的布置与撤场，包括桌椅搬运、物资分发和现场清扫，做事利索不拖沓</li>
+      <li>在现场为来访市民提供引导和咨询服务，待人礼貌、解答耐心</li>
+      <li>多次参与高强度的集中活动日，服从团队分工安排，配合度得到负责人认可</li>
+    </ul>
+  </div>
+
+  <!-- ========== 个人技能 ========== -->
+  <h2>个人技能</h2>
+  <div class="skill-row"><span class="skill-label">语言能力</span><span class="skill-text">普通话标准流利，沟通表达清晰顺畅</span></div>
+  <div class="skill-row"><span class="skill-label">办公软件</span><span class="skill-text">熟练使用 Excel、Word，可独立完成排班表、考勤记录与库存盘点</span></div>
+  <div class="skill-row"><span class="skill-label">综合品质</span><span class="skill-text">体力充沛、做事细心、服从管理、能适应高强度重复性劳动</span></div>
+
+  <!-- ========== 尾部 ========== -->
+  <div class="footer">踏实肯干 · 服从安排 · 随时到岗</div>
+
+</div>
+</body>
+</html>
