@@ -1,130 +1,501 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>李昊冉 · 求职简历</title>
-<style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Roboto,Helvetica,Arial,sans-serif;
-    font-size:14px;line-height:1.6;color:#24292e;background:#f6f8fa;
-    display:flex;justify-content:center;padding:24px 12px;
-  }
-  .resume{max-width:760px;width:100%;background:#fff;padding:36px 48px;border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李昊冉的灵感空间 | 个人主页</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #FDFBF7;
+            --text-main: #4A3E3D;
+            --text-muted: #8C7A78;
+            --accent-clay: #DE8F6E;
+            --accent-sage: #8DAA9D;
+            --card-bg: #FFFFFF;
+            --shadow-soft: 0 10px 30px rgba(74, 62, 61, 0.05);
+            --shadow-hover: 0 15px 35px rgba(222, 143, 110, 0.15);
+        }
 
-  .header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;padding-bottom:16px;border-bottom:2px solid #24292e}
-  .header-left h1{font-size:28px;font-weight:600;letter-spacing:2px;margin-bottom:6px}
-  .header-left .contact{font-size:13px;color:#586069;line-height:1.8}
-  .header-left .contact .sep{color:#d1d5da;margin:0 8px}
-  .photo-box{
-    flex-shrink:0;width:96px;height:132px;border:1px solid #d1d5da;border-radius:3px;background:#fafbfc;
-    display:flex;align-items:center;justify-content:center;color:#959da5;font-size:12px;text-align:center;line-height:1.5
-  }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  .intent{text-align:center;font-size:14px;color:#24292e;margin-bottom:14px;padding:6px 0;background:#f6f8fa;border-radius:4px;font-weight:500}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-  h2{font-size:16px;font-weight:600;color:#24292e;padding-bottom:6px;margin:18px 0 10px;border-bottom:1px solid #eaecef}
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-  .edu-line{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;margin-bottom:2px}
-  .edu-line .school{font-weight:600}
-  .edu-line .detail{color:#586069;font-size:13px}
-  .edu-line .date{color:#586069;font-size:13px;white-space:nowrap}
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(253, 251, 247, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-clay);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--accent-clay); }
 
-  .job{margin-bottom:14px}
-  .job h3{font-size:15px;font-weight:600;color:#24292e;margin-bottom:5px}
-  .job ul{list-style:none;padding:0}
-  .job ul li{position:relative;padding-left:14px;margin-bottom:4px;font-size:14px;color:#24292e;line-height:1.65}
-  .job ul li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;background:#959da5;border-radius:50%}
+        header {
+            padding: 120px 20px 60px;
+            text-align: center;
+            background: linear-gradient(180deg, #FFF5F0 0%, var(--bg-color) 100%);
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .avatar-container { position: relative; margin-bottom: 25px; }
+        .avatar-bg {
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            background: linear-gradient(135deg, var(--accent-clay), var(--accent-sage));
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: wave-blob 8s infinite linear;
+            opacity: 0.2;
+        }
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #FFF;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            z-index: 2;
+            background: #FDF0E8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--accent-clay);
+        }
+        /* 当 img 加载失败时，显示备用 emoji */
+        .avatar-fallback {
+            display: none;
+        }
+        img.avatar[src]:not([src=""]):not(:valid) + .avatar-fallback,
+        img.avatar:error + .avatar-fallback {
+            display: flex;
+        }
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+        header p.subtitle {
+            font-size: 1.1rem;
+            color: var(--accent-clay);
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        .tag-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 500px;
+        }
+        .tag {
+            background: #FFF;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(222, 143, 110, 0.1);
+        }
 
-  .skill-row{display:flex;margin-bottom:4px;font-size:14px;line-height:1.6}
-  .skill-label{width:80px;font-weight:600;flex-shrink:0}
-  .skill-text{color:#586069}
+        section {
+            padding: 80px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            position: relative;
+            color: var(--text-main);
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 4px;
+            background: var(--accent-clay);
+            border-radius: 2px;
+            margin: 8px auto 0;
+        }
 
-  .footer{text-align:center;margin-top:16px;padding-top:12px;border-top:1px solid #eaecef;font-size:13px;color:#959da5;letter-spacing:1px}
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .about-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(0,0,0,0.01);
+        }
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        .about-card i {
+            font-size: 1.8rem;
+            color: var(--accent-sage);
+            margin-bottom: 15px;
+        }
+        .about-card h3 { margin-bottom: 10px; font-size: 1.15rem; }
 
-  .ph{color:#0366d6;border-bottom:1px dashed #0366d6;cursor:text}
+        .experience-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .exp-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: var(--shadow-soft);
+            border-left: 6px solid var(--accent-clay);
+            transition: transform 0.3s;
+        }
+        .exp-card:hover { transform: translateX(5px); }
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .exp-title { font-size: 1.25rem; font-weight: 600; }
+        .exp-date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            background: #F4F1DE;
+            padding: 4px 12px;
+            border-radius: 50px;
+        }
+        .exp-body li {
+            list-style: none;
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+        .exp-body li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--accent-sage);
+        }
 
-  @media print{
-    body{background:#fff;padding:0}
-    .resume{max-width:100%;box-shadow:none;border-radius:0;padding:30px 40px}
-    .intent,.photo-box{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    .job ul li::before{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  }
-  @page{size:A4;margin:0}
-</style>
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        .gallery-item {
+            background: #FFF;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.3s;
+        }
+        .gallery-item:hover { transform: scale(1.02); }
+        .photo-placeholder {
+            width: 100%;
+            height: 200px;
+            background: #EAE5DD;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            padding: 20px;
+            text-align: center;
+        }
+        .photo-placeholder i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--accent-clay);
+        }
+        .gallery-info { padding: 20px; }
+        .gallery-info h4 { margin-bottom: 5px; font-size: 1.05rem; }
+        .gallery-info p { font-size: 0.85rem; color: var(--text-muted); }
+
+        .contact-box {
+            background: linear-gradient(135deg, #FFF5F0 0%, #F5F7F4 100%);
+            border-radius: 32px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+        }
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            background: #FFF;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            transition: background 0.3s, color 0.3s;
+        }
+        .contact-item:hover {
+            background: var(--accent-clay);
+            color: #FFF;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(74, 62, 61, 0.05);
+        }
+
+        @keyframes wave-blob {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            section { padding: 50px 20px; }
+            .exp-header { flex-direction: column; align-items: flex-start; }
+            .contact-links { flex-direction: column; gap: 12px; }
+            .contact-item { justify-content: center; }
+        }
+    </style>
 </head>
 <body>
-<div class="resume">
 
-  <!-- ========== 头部 ========== -->
-  <div class="header">
-    <div class="header-left">
-      <!-- 👇 改名字 -->
-      <h1><span class="ph">李昊冉</span></h1>
-      <div class="contact">
-        <!-- 👇 改电话、现居地、邮箱 -->
-        <span>📞 <span class="ph">18689631383</span></span>
-        <span class="sep">|</span>
-        <span>📍 <span class="ph">海口</span></span>
-        <span class="sep">|</span>
-        <span>📧 <span class="ph">18689631383@163.com</span></span>
-      </div>
-    </div>
-    <!-- 👇 替换为证件照 -->
-    <div class="photo-box">一寸<br>照片</div>
-  </div>
+    <nav>
+        <div class="nav-logo">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Ran's Space
+        </div>
+        <div class="nav-links">
+            <a href="#about">关于我</a>
+            <a href="#exp">经历</a>
+            <a href="#works">手作</a>
+            <a href="#contact">联系</a>
+        </div>
+    </nav>
 
-  <!-- 👇 改意向岗位 -->
-  <div class="intent">求职意向：手工兼职店员 · <span class="ph">章鱼陶陶艺术馆</span> · 随时到岗</div>
+    <header>
+        <div class="avatar-container">
+            <div class="avatar-bg"></div>
+            <img src="images/avatar.jpg" alt="李昊冉" class="avatar"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="avatar" style="display:none;">🐙</div>
+        </div>
+        <h1>嗨，我是李昊冉 ✨</h1>
+        <p class="subtitle">一个喜欢用双手创造美好的 22 岁女生</p>
+        <div class="tag-container">
+            <span class="tag">海南大学在读</span>
+            <span class="tag">手工DIY重度爱好者</span>
+            <span class="tag">耐心满分</span>
+            <span class="tag">执行力强</span>
+            <span class="tag">活力开朗</span>
+        </div>
+    </header>
 
-  <!-- ========== 教育背景 ========== -->
-  <h2>教育背景</h2>
-  <div class="edu-line">
-    <span><span class="school"><span class="ph">海南大学</span></span> · <span class="detail">生态学 · 本科</span></span>
-    <span class="date">2022.09 — 2026.06</span>
-  </div>
+    <section id="about" class="fade-in-section">
+        <h2 class="section-title">关于我</h2>
+        <div class="about-grid">
+            <div class="about-card">
+                <i class="fa-solid fa-heart"></i>
+                <h3>手作热忱</h3>
+                <p>享受从零到一的创造过程。对陶艺、拼豆、调香、银饰有浓厚兴趣，新东西上手极快，充满学习热情。</p>
+            </div>
+            <div class="about-card">
+                <i class="fa-solid fa-face-smile"></i>
+                <h3>亲和沟通</h3>
+                <p>性格阳光开朗，天然喜欢跟人沟通聊天。普通话标准，在面对顾客和市民时具备天然的耐心与共情力。</p>
+            </div>
+            <div class="about-card">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <h3>靠谱踏实</h3>
+                <p>不管是精细的实验室规范还是繁杂的物资清点，都能做到有条不紊。时间观念极强，能长期稳定工作。</p>
+            </div>
+        </div>
+    </section>
 
-  <!-- ========== 工作与项目经历 ========== -->
-  <h2>工作经历</h2>
+    <section id="exp" class="fade-in-section">
+        <h2 class="section-title">我的经历</h2>
+        <div class="experience-container">
 
-  <div class="job">
-    <h3>实验室助理</h3>
-    <ul>
-      <li>长期从事精密手工操作——用高精度天平称量试剂、配比材料，手法稳、误差小，练出了耐心和手头功夫</li>
-      <li>严格按流程作业：先核对步骤再动手，做完检查一遍，养成了一板一眼、不出错的工作习惯</li>
-      <li>维护工作区域整洁有序，东西用完立马归位，桌面地面随手擦干净</li>
-      <li>单次值班 6—8 小时，全程站立或走动，体力跟得上，能长时间保持专注</li>
-    </ul>
-  </div>
+            <div class="exp-card">
+                <div class="exp-header">
+                    <div class="exp-title">实验室日常运营与标准操作助理</div>
+                    <div class="exp-date">高校日常</div>
+                </div>
+                <div class="exp-body">
+                    <ul>
+                        <li><strong>严谨的流程意识：</strong>在复杂实验环境中，严格遵守标准作业程序（SOP）和卫生安全规范，保持区域100%整洁，物品用完即刻归位。</li>
+                        <li><strong>精细手作稳定性：</strong>熟练操作万分之一高精度分析天平，负责实验试剂、耗材的精密称量与配比，手法极其沉稳、细心。</li>
+                        <li><strong>充足的体力支撑：</strong>具备极强的耐力与专注力，能够适应长时间站立操作及高强度的重复性工作。</li>
+                    </ul>
+                </div>
+            </div>
 
-  <div class="job">
-    <h3>校园实地调研助理</h3>
-    <ul>
-      <li>随团队赴多个城市开展实地调研，负责出行物资的清点打包，出发前逐项核对清单，从未出现遗漏</li>
-      <li>收集回来的资料分类、编号、归档，整理归纳有条理，后续查找很方便</li>
-    </ul>
-  </div>
+            <div class="exp-card">
+                <div class="exp-header">
+                    <div class="exp-title">校园实地调研与后勤执行助理</div>
+                    <div class="exp-date">项目期间</div>
+                </div>
+                <div class="exp-body">
+                    <ul>
+                        <li><strong>零失误物资盘点：</strong>跟随导师跨城市做公园考察调研，独立负责全队出行物资的清点与打包，出发前逐项严格核对，从未发生过物资漏带情况。</li>
+                        <li><strong>高效的信息归档：</strong>调研结束后，负责将收集到的庞杂原始资料进行科学分类、标准化编号并打包归档，展现出优秀的整理和条理性。</li>
+                    </ul>
+                </div>
+            </div>
 
-  <div class="job">
-    <h3>小动物保护协会 · 社区志愿服务</h3>
-    <ul>
-      <li>在活动现场接待来访市民，引导路线、解答问题，跟陌生人聊天不怯场，有耐心</li>
-      <li>负责场地布置和撤场整理，搬桌椅、分物资、扫地清场，做事不拖沓</li>
-      <li>服从团队分工，配合度高，集体活动从不迟到早退</li>
-    </ul>
-  </div>
+            <div class="exp-card">
+                <div class="exp-header">
+                    <div class="exp-title">小动物保护协会 / 社区志愿服务（志愿者）</div>
+                    <div class="exp-date">志愿服务</div>
+                </div>
+                <div class="exp-body">
+                    <ul>
+                        <li><strong>一线接待与引导：</strong>在活动现场负责接待来访市民、指路答疑，沟通顺畅不怯场，服务意识深受好评。</li>
+                        <li><strong>高效率现场布置：</strong>负责场地的搭建与撤场，涉及搬运桌椅、分发物资、打扫清场等所有体力活、脏活累活抢着干，绝对服从整体调度与时间安排。</li>
+                    </ul>
+                </div>
+            </div>
 
-  <!-- ========== 个人技能与特质 ========== -->
-  <h2>个人技能</h2>
-  <div class="skill-row"><span class="skill-label">手工能力</span><span class="skill-text">平时喜欢做手工，享受动手创作的过程，愿意花时间学陶艺、拼豆、调香等新手艺</span></div>
-  <div class="skill-row"><span class="skill-label">沟通表达</span><span class="skill-text">普通话标准流利，性格开朗，喜欢跟人聊天，能自然地向客人介绍和讲解</span></div>
-  <div class="skill-row"><span class="skill-label">学习能力</span><span class="skill-text">新东西上手快，先看示范再自己练，愿意接受两天集中培训后上岗的安排</span></div>
-  <div class="skill-row"><span class="skill-label">工作习惯</span><span class="skill-text">细心有条理、服从管理、时间观念强，能长期稳定出勤</span></div>
+        </div>
+    </section>
 
-  <!-- ========== 底部 ========== -->
-  <div class="footer">手工爱好者 · 性格开朗 · 长期稳定</div>
+    <section id="works" class="fade-in-section">
+        <h2 class="section-title">手作与日常</h2>
+        <div class="gallery-grid">
 
-</div>
+            <div class="gallery-item">
+                <div class="photo-placeholder">
+                    <i class="fa-solid fa-palette"></i>
+                    <span>【手作日常照片 1】<br>建议放置：自己的手工作品、DIY过程照</span>
+                </div>
+                <div class="gallery-info">
+                    <h4>手作的快乐</h4>
+                    <p>每一次指尖的触碰，都是灵感的落地过程。</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="photo-placeholder">
+                    <i class="fa-solid fa-store"></i>
+                    <span>【手作日常照片 2】<br>建议放置：在实验室/做志愿者的生活照</span>
+                </div>
+                <div class="gallery-info">
+                    <h4>细致与专注</h4>
+                    <p>无论是称量一毫克试剂，还是打磨一件作品，都保持百分百的投入。</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="fade-in-section">
+        <div class="contact-box">
+            <h2>期待与您见面 ✨</h2>
+            <p style="margin-top: 10px; color: var(--text-muted);">我正在寻找手工兼职店员机会，如果您觉得我合适，欢迎随时联系我！</p>
+            <div class="contact-links">
+                <a href="tel:18689631383" class="contact-item">
+                    <i class="fa-solid fa-phone" style="color: var(--accent-clay);"></i>
+                    <span>18689631383</span>
+                </a>
+                <a href="mailto:18689631383@163.com" class="contact-item">
+                    <i class="fa-solid fa-envelope" style="color: var(--accent-sage);"></i>
+                    <span>18689631383@163.com</span>
+                </a>
+                <div class="contact-item">
+                    <i class="fa-solid fa-location-dot" style="color: var(--accent-sage);"></i>
+                    <span>海南省海口市（海南大学）</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 李昊冉. Made with ❤️ and Handcraft Spirit.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const sections = document.querySelectorAll('.fade-in-section');
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
 </body>
 </html>
