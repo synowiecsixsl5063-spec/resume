@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>李昊冉 | 灵感与手作空间</title>
+<link rel="preload" href="images/avatar.webp" as="image" type="image/webp" fetchpriority="high">
+<link rel="preload" href="images/zueimon-hero.avif" as="image" type="image/avif" fetchpriority="high">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
 <style>
 :root {
@@ -298,8 +300,14 @@ footer {
 <body>
 
 <!-- 肥嘟嘟左卫门 两侧固定装饰 -->
-<img src="images/zueimon-jump.png?v=2" alt="肥嘟嘟左卫门" class="zueimon-jump">
-<img src="images/zueimon-sketch.png?v=2" alt="肥嘟嘟左卫门" class="zueimon-sketch">
+<picture>
+    <source srcset="images/zueimon-jump.webp" type="image/webp">
+    <img src="images/zueimon-jump.png?v=2" alt="肥嘟嘟左卫门" class="zueimon-jump" loading="lazy" decoding="async">
+</picture>
+<picture>
+    <source srcset="images/zueimon-sketch.webp" type="image/webp">
+    <img src="images/zueimon-sketch.png?v=2" alt="肥嘟嘟左卫门" class="zueimon-sketch" loading="lazy" decoding="async">
+</picture>
 
 <!-- 飘落花瓣 -->
 <div class="petals-container" id="petals"></div>
@@ -318,8 +326,11 @@ footer {
         <div class="hero-l">
             <span class="eyebrow">海南大学在读 · 章鱼陶陶艺术馆应聘中</span>
             <div class="name-avatar-row">
-                <img class="avatar-img-big" src="images/avatar.png?v=2" alt="李昊冉"
-                     onerror="this.style.display='none';document.getElementById('afb2').style.display='flex';">
+                <picture>
+                    <source srcset="images/avatar.webp" type="image/webp">
+                    <img class="avatar-img-big" src="images/avatar.png?v=2" alt="李昊冉" fetchpriority="high"
+                         onerror="this.style.display='none';document.getElementById('afb2').style.display='flex';">
+                </picture>
                 <div id="afb2" style="display:none;width:100px;height:100px;border-radius:28px;background:linear-gradient(135deg,#FFE0EA,#FFD0DD);align-items:center;justify-content:center;font-size:46px;">🐙</div>
                 <div class="name-col">
                     <h1>李昊冉</h1>
@@ -348,11 +359,18 @@ footer {
             </div>
 
             <div class="mascot-stage">
-                <img src="images/zueimon-hero.png?v=2" alt="肥嘟嘟左卫门 武士" class="zueimon-hero">
+                <picture>
+                    <source srcset="images/zueimon-hero.avif" type="image/avif">
+                    <source srcset="images/zueimon-hero.webp" type="image/webp">
+                    <img src="images/zueimon-hero.png?v=2" alt="肥嘟嘟左卫门 武士" class="zueimon-hero" fetchpriority="high">
+                </picture>
                 <div class="mascot-note">肥嘟嘟左卫门 · 春日部防卫队</div>
             </div>
 
-            <img src="images/zueimon-peek.png?v=2" alt="肥嘟嘟左卫门 探头" class="zueimon-peek">
+            <picture>
+                <source srcset="images/zueimon-peek.webp" type="image/webp">
+                <img src="images/zueimon-peek.png?v=2" alt="肥嘟嘟左卫门 探头" class="zueimon-peek" loading="lazy" decoding="async">
+            </picture>
         </div>
     </section>
 
@@ -400,11 +418,19 @@ footer {
     <div class="rule"></div>
     <div class="gallery-grid">
         <article class="gallery-panel reveal">
-            <img src="images/微信图片_20260612140034_276_25.jpg" alt="手工作品1" loading="lazy" decoding="async">
+            <picture>
+                <source srcset="images/微信图片_20260612140034_276_25.avif" type="image/avif">
+                <source srcset="images/微信图片_20260612140034_276_25.webp" type="image/webp">
+                <img src="images/微信图片_20260612140034_276_25.jpg" alt="手工作品1" loading="lazy" decoding="async">
+            </picture>
             <div class="cap"><strong>手工作品 01</strong>突出材料质感与成品完成度。</div>
         </article>
         <article class="gallery-panel reveal">
-            <img src="images/微信图片_20260612140137_277_25.jpg" alt="手工作品2" loading="lazy" decoding="async">
+            <picture>
+                <source srcset="images/微信图片_20260612140137_277_25.avif" type="image/avif">
+                <source srcset="images/微信图片_20260612140137_277_25.webp" type="image/webp">
+                <img src="images/微信图片_20260612140137_277_25.jpg" alt="手工作品2" loading="lazy" decoding="async">
+            </picture>
             <div class="cap"><strong>手工作品 02</strong>保留照片完整视觉。</div>
         </article>
         <aside class="slot-panel reveal">
